@@ -1,5 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 
+export interface Tile {
+  text: string;
+  imgPath: string;
+}
+
 @Component({
   selector: 'app-tile',
   templateUrl: './tile.component.html',

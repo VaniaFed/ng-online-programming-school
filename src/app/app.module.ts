@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { TileComponent } from './tile/tile.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { MainAdminComponent } from './pages/main-admin/main-admin.component';
+import {RouterModule} from '@angular/router';
+import {RoutingModule} from './routing.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { MainAdminComponent } from './pages/main-admin/main-admin.component';
     MainAdminComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule,
+    RoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
