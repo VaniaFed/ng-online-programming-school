@@ -1,0 +1,10 @@
+.tile__image {
+  margin-bottom: 4px;
+  max-height: 200px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tile__title {
+  font-size: 18px;
+}
