@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Tile} from '../app.component';
+import {Tile} from '../tile/tile.component';
 
 @Component({
   selector: 'app-gallery',

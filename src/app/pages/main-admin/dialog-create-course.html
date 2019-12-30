@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Add a course</h1>
+<div mat-dialog-content>
+  <form [formGroup]="formCreateCourseFields">
+    <mat-form-field>
+      <input matInput formControlName="name" type="text" placeholder="Name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="imgPath" type="text" placeholder="Image path">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+  <button mat-button [mat-dialog-close]="formCreateCourseFields">Create</button>
+</div>
