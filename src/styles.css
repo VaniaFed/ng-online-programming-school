@@ -26,3 +26,11 @@ body {
 .full-width {
   width: 100%;
 }
+
+.title1 {
+  margin-bottom: 26px;
+}
+
+.title2 {
+  margin-bottom: 13px;
+}

@@ -2,14 +2,16 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatTableModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
 import {TileComponent} from './tile/tile.component';
 import {TileGalleryComponent} from './tile-gallery/tile.gallery.component';
-import {DialogCreateCourse, MainAdminComponent} from './pages/main-admin/main-admin.component';
+import {MainAdminComponent} from './pages/main-admin/main-admin.component';
 import {RoutingModule} from './routing.module';
+import {CoursesTableComponent} from './pages/main-admin/courses-table/courses-table.component';
+import {CoursesComponent, DialogCreateCourse} from './pages/main-admin/courses/courses.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import {RoutingModule} from './routing.module';
     TileComponent,
     TileGalleryComponent,
     MainAdminComponent,
-    DialogCreateCourse
+    DialogCreateCourse,
+    CoursesTableComponent,
+    CoursesComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,8 @@ import {RoutingModule} from './routing.module';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ],
   exports: [
     MatDialogModule

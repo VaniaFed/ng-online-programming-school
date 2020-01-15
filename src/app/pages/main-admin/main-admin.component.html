@@ -1,4 +1,9 @@
 <div class="container">
-  <tile-gallery [tiles]="courses"></tile-gallery>
-  <button class="courses__add-course" (click)="openDialogCreateCourse()" mat-raised-button color="primary">Add a course</button>
+  <h1 class="title1">Admin panel</h1>
+  <div class="admin-section">
+    <courses></courses>
+  </div>
+  <div class="admin-section">
+    <courses-table></courses-table>
+  </div>
 </div>
