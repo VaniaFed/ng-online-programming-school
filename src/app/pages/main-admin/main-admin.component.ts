@@ -1,19 +1,15 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {Tile} from '../../tile/tile.component';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-interface DialogFormControl {
-  text: string;
-  key: string;
-}
 @Component({
   selector: 'app-main-admin',
   templateUrl: './main-admin.component.html',
   styleUrls: ['./main-admin.component.css']
 })
-export class MainAdminComponent implements OnInit {
-  controls: DialogFormControl[];
+export class MainAdminComponent {
+  coursesForm: FormGroup;
   courses: Tile[] = [
     {
       text: 'React course',
@@ -30,26 +26,15 @@ export class MainAdminComponent implements OnInit {
   ];
 
   constructor(private dialog: MatDialog, formBuilder: FormBuilder) {
-    this.controls = [
-      {
-        text: 'Image path',
-        key: 'imgPath'
-      },
-      {
-        text: 'Name',
-        key: 'name'
-      }
-    ];
-  }
-
-  ngOnInit() {
+    this.coursesForm = formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
+      imgPath: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
+    });
   }
 
   openDialogCreateCourse() {
     const dialogCreateCourseRef = this.dialog.open(DialogCreateCourse, {
-      data: {
-        controls: this.controls
-      }
+      data: { form: this.coursesForm }
     });
     dialogCreateCourseRef.afterClosed().subscribe(fields => {
       // TODO:
@@ -62,7 +47,7 @@ export class MainAdminComponent implements OnInit {
 }
 
 interface DialogData {
-  controls: DialogFormControl[];
+  form: FormGroup;
 }
 @Component({
   selector: 'dialog-create-course',
@@ -70,12 +55,13 @@ interface DialogData {
 })
 // tslint:disable-next-line:component-class-suffix
 export class DialogCreateCourse {
-  form: FormArray;
+  form: FormGroup;
   constructor(
     public dialogRef: MatDialogRef<DialogCreateCourse>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
-    this.form = new FormArray(data.controls.map(control => new FormControl(control.key)));
+    console.log(data);
+    this.form = data.form;
   }
 
   onNoClick(): void {

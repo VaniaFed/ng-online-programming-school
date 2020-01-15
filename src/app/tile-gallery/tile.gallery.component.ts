@@ -2,11 +2,11 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Tile} from '../tile/tile.component';
 
 @Component({
-  selector: 'app-gallery',
-  templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.css']
+  selector: 'tile-gallery',
+  templateUrl: './tile.gallery.component.html',
+  styleUrls: ['./tile.gallery.component.css']
 })
-export class GalleryComponent implements OnInit {
+export class TileGalleryComponent implements OnInit {
   @Input() tiles: Tile[];
   constructor() { }
 

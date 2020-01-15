@@ -1,11 +1,12 @@
 <h1 mat-dialog-title>Add a course</h1>
-<div mat-dialog-content>
-  <div *ngFor="let control of data.controls; let i = index;">
-    <mat-form-field>
-      <input matInput type="text" [placeholder]="control.text" [name]="control.key">
-    </mat-form-field>
-  </div>
-</div>
+<form [formGroup]="form" mat-dialog-content>
+  <mat-form-field class="full-width">
+    <input matInput formControlName="name" type="text" placeholder="Name">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput formControlName="imgPath" type="text" placeholder="Image path">
+  </mat-form-field>
+</form>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Close</button>
   <button mat-button [mat-dialog-close]="form" [disabled]="form.invalid">Create</button>

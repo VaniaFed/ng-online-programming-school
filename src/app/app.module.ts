@@ -5,10 +5,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import {ModalComponent} from './modal/modal.component';
 import {AppComponent} from './app.component';
 import {TileComponent} from './tile/tile.component';
-import {GalleryComponent} from './gallery/gallery.component';
+import {TileGalleryComponent} from './tile-gallery/tile.gallery.component';
 import {DialogCreateCourse, MainAdminComponent} from './pages/main-admin/main-admin.component';
 import {RoutingModule} from './routing.module';
 
@@ -16,9 +15,8 @@ import {RoutingModule} from './routing.module';
   declarations: [
     AppComponent,
     TileComponent,
-    GalleryComponent,
+    TileGalleryComponent,
     MainAdminComponent,
-    ModalComponent,
     DialogCreateCourse
   ],
   imports: [
