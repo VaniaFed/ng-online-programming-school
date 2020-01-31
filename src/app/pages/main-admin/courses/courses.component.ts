@@ -1,7 +1,13 @@
 import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Tile} from '../../../tile/tile.component';
+import { Store, select } from '@ngrx/store';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
+import {Observable} from 'rxjs';
+import {addCourse} from './courses.actions';
+import {AppState} from './courses.reducer';
+import {ICourse} from './types';
+import {coursesToTile} from './coursesToTile';
+import {Tile} from '../../../tile/tile.component';
 
 @Component({
   selector: 'courses',
@@ -10,38 +16,33 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 })
 export class CoursesComponent {
   coursesForm: FormGroup;
-  courses: Tile[] = [
-    {
-      text: 'React course',
-      imgPath: 'https://reactjs.org/logo-og.png'
-    },
-    {
-      text: 'Vue course',
-      imgPath: 'https://miro.medium.com/max/2560/1*Ht8T-vqbqy5iG7FzNQGjFA.png'
-    },
-    {
-      text: 'Angular course',
-      imgPath: 'https://miro.medium.com/max/3200/1*Guedpz-wJ5fdffg75bNuIQ.png'
-    }
-  ];
+  courses$: Observable<any>;
+  coursesAsTile: Tile[];
 
-  constructor(private dialog: MatDialog, formBuilder: FormBuilder) {
+  constructor(private dialog: MatDialog, formBuilder: FormBuilder, private store: Store<AppState>) {
     this.coursesForm = formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
-      imgPath: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
+      imgSrc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
     });
+    this.courses$ = store.pipe(select('courses'));
+    this.courses$.subscribe(({courses}) => {
+      this.coursesAsTile = coursesToTile(courses);
+    });
+  }
+
+  addCourse(course: ICourse) {
+    this.store.dispatch(addCourse({course}));
   }
 
   openDialogCreateCourse() {
     const dialogCreateCourseRef = this.dialog.open(DialogCreateCourse, {
       data: { form: this.coursesForm }
     });
-    dialogCreateCourseRef.afterClosed().subscribe(fields => {
-      // TODO:
-      // add course
-      // http request
-      // rx operations
-      console.log(fields);
+    dialogCreateCourseRef.afterClosed().subscribe((course: ICourse) => {
+      if (course !== undefined) {
+        this.addCourse(course);
+      }
+      this.coursesForm.reset();
     });
   }
 }

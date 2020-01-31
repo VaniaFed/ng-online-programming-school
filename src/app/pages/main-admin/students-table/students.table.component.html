@@ -1,4 +1,6 @@
-<table mat-table [dataSource]="tableRow" class="full-width">
+<section class="admin__courses">
+  <h2 class="title2">Students</h2>
+  <table mat-table [dataSource]="tableRow" class="full-width">
   <ng-container matColumnDef="fullName">
     <th mat-header-cell *matHeaderCellDef> Full name </th>
     <td mat-cell *matCellDef="let row"> {{row.fullName}} </td>
@@ -10,3 +12,5 @@
   <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
   <tr mat-row *matRowDef="let myRowData; columns: tableColumns"></tr>
 </table>
+  <button class="courses__add-course" (click)="openDialogCreateStudent()" mat-raised-button color="primary">Add a student</button>
+</section>
