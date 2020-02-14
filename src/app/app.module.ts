@@ -16,6 +16,7 @@ import {RoutingModule} from './routing.module';
 import {StudentsTableComponent, DialogCreateStudent} from './pages/main-admin/students-table/students-table.component';
 import {CoursesComponent, DialogCreateCourse} from './pages/main-admin/courses/courses.component';
 import {addCourseReducer} from './pages/main-admin/courses/courses.reducer';
+import {addStudentReducer} from './pages/main-admin/students-table/students.reducer';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,10 @@ import {addCourseReducer} from './pages/main-admin/courses/courses.reducer';
     MatInputModule,
     MatDialogModule,
     MatTableModule,
-    StoreModule.forRoot({courses: addCourseReducer}),
+    StoreModule.forRoot({
+      courses: addCourseReducer,
+      students: addStudentReducer
+    }),
     StoreDevtoolsModule.instrument({maxAge: 10})
   ],
   exports: [

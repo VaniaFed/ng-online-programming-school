@@ -1,6 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
+import {StudentsState} from './students.reducer';
+import {select, Store} from '@ngrx/store';
+import {addStudent} from './students.actions';
+import {IStudent} from '../courses/types';
+import {Observable} from 'rxjs';
 
 interface TableRow {
   fullName: string;
@@ -14,41 +19,37 @@ interface TableRow {
 })
 export class StudentsTableComponent implements OnInit {
   tableColumns: string[] = ['fullName', 'course'];
-  tableRow: TableRow[] = [
-    {
-      fullName: 'Ivan Fedyakov',
-      course: 'Angular full advanced course'
-    },
-    {
-      fullName: 'Vladimir Artemev',
-      course: 'Angular full advanced course'
-    },
-    {
-      fullName: 'Roman Achilov',
-      course: 'React full advanced course'
-    },
-  ];
+  students$: Observable<any>;
+  tableRow: TableRow[] = [];
   studentsForm: FormGroup;
 
-  constructor(private dialog: MatDialog, private formBuilder: FormBuilder) {
+  constructor(private dialog: MatDialog, private formBuilder: FormBuilder, private store: Store<StudentsState>) {
     this.studentsForm = formBuilder.group({
       fullName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
       course: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
+    });
+    this.students$ = store.pipe(select('students'));
+    this.students$.subscribe(({students}) => {
+      if (students.length !== 0) {
+        this.tableRow = students;
+      }
     });
   }
 
   ngOnInit() {
   }
 
+  addStudent(student: IStudent) {
+    this.store.dispatch(addStudent({ student }));
+  }
+
   openDialogCreateStudent() {
     const dialogCreateStudentRef = this.dialog.open(DialogCreateStudent, {
       data: { form: this.studentsForm }
     });
-    // replace with IStudent
     dialogCreateStudentRef.afterClosed().subscribe((student: any) => {
       if (student !== undefined) {
-        console.log('adding a student');
-        // this.addStudent(student);
+        this.addStudent(student);
       }
       this.studentsForm.reset();
     });

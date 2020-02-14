@@ -2,11 +2,11 @@ import {Action, createReducer, on} from '@ngrx/store';
 import {addCourse} from './courses.actions';
 import {ICourse} from './types';
 
-export interface AppState {
+export interface CoursesState {
   courses: ICourse[];
 }
 
-const initialState: AppState = {
+const initialState: CoursesState = {
   courses: []
 };
 
@@ -14,11 +14,12 @@ const initialState: AppState = {
 const _addCourseReducer = createReducer(
   initialState,
   on(addCourse,
-    (state: AppState, {course}) => {
+    (state: CoursesState, {course}) => {
     return {
       courses: [...state.courses, course]
     };
   })
 );
 
-export const addCourseReducer = (state: AppState | undefined, action: Action) => _addCourseReducer(state, action);
+export const addCourseReducer = (state: CoursesState | undefined, action: Action) =>
+  _addCourseReducer(state, action);

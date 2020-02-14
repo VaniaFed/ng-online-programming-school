@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {Observable} from 'rxjs';
 import {addCourse} from './courses.actions';
-import {AppState} from './courses.reducer';
+import { CoursesState } from './courses.reducer';
 import {ICourse} from './types';
 import {coursesToTile} from './coursesToTile';
 import {Tile} from '../../../tile/tile.component';
@@ -19,7 +19,7 @@ export class CoursesComponent {
   courses$: Observable<any>;
   coursesAsTile: Tile[];
 
-  constructor(private dialog: MatDialog, formBuilder: FormBuilder, private store: Store<AppState>) {
+  constructor(private dialog: MatDialog, formBuilder: FormBuilder, private store: Store<CoursesState>) {
     this.coursesForm = formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
       imgSrc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]

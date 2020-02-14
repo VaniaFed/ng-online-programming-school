@@ -4,3 +4,9 @@ export interface ICourse {
   price: string;
   imgSrc: string;
 }
+
+export interface IStudent {
+  id: string;
+  fullName: string;
+  course: string;
+}
