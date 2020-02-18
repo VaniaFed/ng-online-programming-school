@@ -17,6 +17,7 @@ import {StudentsTableComponent, DialogCreateStudent} from './pages/main-admin/st
 import {CoursesComponent, DialogCreateCourse} from './pages/main-admin/courses/courses.component';
 import {addCourseReducer} from './pages/main-admin/courses/courses.reducer';
 import {addStudentReducer} from './pages/main-admin/students-table/students.reducer';
+import {CourseAdminComponent} from './pages/course-admin/course-admin.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {addStudentReducer} from './pages/main-admin/students-table/students.redu
     StudentsTableComponent,
     CoursesComponent,
     DialogCreateStudent,
+    CourseAdminComponent,
   ],
   imports: [
     BrowserModule,

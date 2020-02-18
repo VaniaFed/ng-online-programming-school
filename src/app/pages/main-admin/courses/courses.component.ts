@@ -26,6 +26,7 @@ export class CoursesComponent {
     });
     this.courses$ = store.pipe(select('courses'));
     this.courses$.subscribe(({courses}) => {
+      console.log(courses);
       this.coursesAsTile = coursesToTile(courses);
     });
   }

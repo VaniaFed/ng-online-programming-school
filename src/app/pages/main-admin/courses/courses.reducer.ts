@@ -15,8 +15,12 @@ const _addCourseReducer = createReducer(
   initialState,
   on(addCourse,
     (state: CoursesState, {course}) => {
+    const courseWithId = {
+      ...course,
+      id: String(Math.random())
+    };
     return {
-      courses: [...state.courses, course]
+      courses: [...state.courses, courseWithId]
     };
   })
 );
