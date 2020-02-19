@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {MainAdminComponent} from './pages/main-admin/main-admin.component';
-import {CourseAdminComponent} from './pages/course-admin/course-admin.component';
+import {CourseAdminComponent} from './course-admin/course-admin.component';
 
 const routingSchematics: Routes = [
   {
@@ -12,15 +11,15 @@ const routingSchematics: Routes = [
   },
   {
     path: 'admin',
-    component: MainAdminComponent,
+    loadChildren: () => import('./main-admin/main-admin.module').then(m => m.MainAdminModule)
   },
   {
-    path: 'courses/:id',
+    path: 'admin/courses/:id',
     component: CourseAdminComponent
   },
   {
-    path: 'course/:id',
-    redirectTo: 'courses/:id'
+    path: 'admin/course/:id',
+    redirectTo: 'admin/courses/:id'
   }
 ];
 
@@ -31,4 +30,4 @@ const routingSchematics: Routes = [
     RouterModule.forRoot(routingSchematics)
   ]
 })
-export class RoutingModule { }
+export class AppRoutingModule { }

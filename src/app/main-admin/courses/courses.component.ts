@@ -7,7 +7,7 @@ import {addCourse} from './courses.actions';
 import { CoursesState } from './courses.reducer';
 import {ICourse} from './types';
 import {coursesToTile} from './coursesToTile';
-import {Tile} from '../../../tile/tile.component';
+import {Tile} from '../../shared/tile/tile.component';
 
 @Component({
   selector: 'courses',
