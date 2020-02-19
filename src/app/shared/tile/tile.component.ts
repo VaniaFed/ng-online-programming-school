@@ -2,7 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 
 export interface Tile {
   text: string;
-  imgPath: string;
+  imgSrc: string;
+  linkHref?: string;
 }
 
 @Component({
@@ -12,7 +13,8 @@ export interface Tile {
 })
 export class TileComponent implements OnInit {
   @Input() text: string;
-  @Input() imgPath: string;
+  @Input() imgSrc: string;
+  @Input() linkHref: string | any[];
   constructor() { }
 
   ngOnInit() {

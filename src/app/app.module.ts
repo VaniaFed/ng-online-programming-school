@@ -2,42 +2,31 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule} from '@angular/material';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import {ModalComponent} from './modal/modal.component';
+
 import {AppComponent} from './app.component';
-import {TileComponent} from './tile/tile.component';
-import {GalleryComponent} from './gallery/gallery.component';
-import {DialogCreateCourse, MainAdminComponent} from './pages/main-admin/main-admin.component';
-import {RoutingModule} from './routing.module';
+import {AppRoutingModule} from './app-routing.module';
+import {addCourseReducer} from './main-admin/courses/courses.reducer';
+import {addStudentReducer} from './main-admin/students-table/students.reducer';
+import {MainAdminModule} from './main-admin/main-admin.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TileComponent,
-    GalleryComponent,
-    MainAdminComponent,
-    ModalComponent,
-    DialogCreateCourse
   ],
   imports: [
     BrowserModule,
     RouterModule,
-    RoutingModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatDialogModule
-  ],
-  exports: [
-    MatDialogModule
-  ],
-  entryComponents: [
-    DialogCreateCourse
+    StoreModule.forRoot({
+      courses: addCourseReducer,
+      students: addStudentReducer
+    }),
+    StoreDevtoolsModule.instrument({maxAge: 10}),
+    MainAdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

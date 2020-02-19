@@ -9,6 +9,10 @@ img {
   width: 100%;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   font: 16px/1.5 Roboto, Arial;
 }
@@ -19,5 +23,14 @@ body {
   margin: 0 auto;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.full-width {
+  width: 100%;
+}
+
+.title1 {
+  margin-bottom: 26px;
+}
+
+.title2 {
+  margin-bottom: 13px;
+}
