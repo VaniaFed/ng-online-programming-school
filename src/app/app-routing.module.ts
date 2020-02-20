@@ -13,14 +13,6 @@ const routingSchematics: Routes = [
     path: 'admin',
     loadChildren: () => import('./main-admin/main-admin.module').then(m => m.MainAdminModule)
   },
-  {
-    path: 'admin/courses/:id',
-    component: CourseAdminComponent
-  },
-  {
-    path: 'admin/course/:id',
-    redirectTo: 'admin/courses/:id'
-  }
 ];
 
 @NgModule({

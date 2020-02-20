@@ -13,9 +13,7 @@ import {addStudentReducer} from './main-admin/students-table/students.reducer';
 import {MainAdminModule} from './main-admin/main-admin.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     RouterModule,
@@ -25,8 +23,7 @@ import {MainAdminModule} from './main-admin/main-admin.module';
       courses: addCourseReducer,
       students: addStudentReducer
     }),
-    StoreDevtoolsModule.instrument({maxAge: 10}),
-    MainAdminModule
+    StoreDevtoolsModule.instrument({maxAge: 10})
   ],
   providers: [],
   bootstrap: [AppComponent]
