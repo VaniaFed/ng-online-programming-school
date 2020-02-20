@@ -16,7 +16,7 @@ interface TableRow {
 
 @Component({
   selector: 'students-table',
-  templateUrl: './students.table.component.html',
+  templateUrl: './students-table.component.html',
   styleUrls: []
 })
 export class StudentsTableComponent {
