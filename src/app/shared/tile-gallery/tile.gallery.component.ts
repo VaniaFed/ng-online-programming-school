@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Tile } from '../tile/tile.component';
+import {Component, Input} from '@angular/core';
+import {Tile} from '../tile/tile.component';
 
 @Component({
   selector: 'tile-gallery',
@@ -8,7 +8,4 @@ import { Tile } from '../tile/tile.component';
 })
 export class TileGalleryComponent {
   @Input() tiles: Tile[];
-  constructor() {
-  }
-
 }

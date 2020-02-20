@@ -1,11 +1,13 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
-import {StudentsState} from './students.reducer';
+import {MatDialog} from '@angular/material';
 import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+
+import {StudentsState} from './students.reducer';
 import {addStudent} from './students.actions';
 import {IStudent} from '../courses/types';
-import {Observable} from 'rxjs';
+import {DialogCreateStudentComponent} from './dialog-create-student/dialog-create-student.component';
 
 interface TableRow {
   fullName: string;
@@ -15,9 +17,9 @@ interface TableRow {
 @Component({
   selector: 'students-table',
   templateUrl: './students.table.component.html',
-  styleUrls: ['./students.table.component.css']
+  styleUrls: []
 })
-export class StudentsTableComponent implements OnInit {
+export class StudentsTableComponent {
   tableColumns: string[] = ['fullName', 'course'];
   students$: Observable<any>;
   tableRow: TableRow[] = [];
@@ -36,15 +38,12 @@ export class StudentsTableComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
-
   addStudent(student: IStudent) {
     this.store.dispatch(addStudent({ student }));
   }
 
   openDialogCreateStudent() {
-    const dialogCreateStudentRef = this.dialog.open(DialogCreateStudent, {
+    const dialogCreateStudentRef = this.dialog.open(DialogCreateStudentComponent, {
       data: { form: this.studentsForm }
     });
     dialogCreateStudentRef.afterClosed().subscribe((student: any) => {
@@ -56,24 +55,3 @@ export class StudentsTableComponent implements OnInit {
   }
 }
 
-interface DialogData {
-  form: FormGroup;
-}
-@Component({
-  selector: 'dialog-create-student',
-  templateUrl: 'dialog-create-student.html',
-})
-// tslint:disable-next-line:component-class-suffix
-export class DialogCreateStudent {
-  form: FormGroup;
-  constructor(
-    public dialogRef: MatDialogRef<DialogCreateStudent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {
-    this.form = data.form;
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}

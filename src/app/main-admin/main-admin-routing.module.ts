@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CourseAdminComponent} from '../course-admin/course-admin.component';
 import {MainAdminComponent} from './main-admin.component';

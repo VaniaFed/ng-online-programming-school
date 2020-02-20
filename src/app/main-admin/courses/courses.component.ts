@@ -1,13 +1,14 @@
-import {Component, Inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { Store, select } from '@ngrx/store';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
+import {Store, select} from '@ngrx/store';
+import {MatDialog} from '@angular/material';
 import {Observable} from 'rxjs';
 import {addCourse} from './courses.actions';
 import { CoursesState } from './courses.reducer';
 import {ICourse} from './types';
 import {coursesToTile} from './coursesToTile';
 import {Tile} from '../../shared/tile/tile.component';
+import { DialogCreateCourseComponent } from './dialog-create-course/dialog-create-course.component';
 
 @Component({
   selector: 'courses',
@@ -26,7 +27,6 @@ export class CoursesComponent {
     });
     this.courses$ = store.pipe(select('courses'));
     this.courses$.subscribe(({courses}) => {
-      console.log(courses);
       this.coursesAsTile = coursesToTile(courses);
     });
   }
@@ -36,7 +36,7 @@ export class CoursesComponent {
   }
 
   openDialogCreateCourse() {
-    const dialogCreateCourseRef = this.dialog.open(DialogCreateCourse, {
+    const dialogCreateCourseRef = this.dialog.open(DialogCreateCourseComponent, {
       data: { form: this.coursesForm }
     });
     dialogCreateCourseRef.afterClosed().subscribe((course: ICourse) => {
@@ -48,24 +48,3 @@ export class CoursesComponent {
   }
 }
 
-interface DialogData {
-  form: FormGroup;
-}
-@Component({
-  selector: 'dialog-create-course',
-  templateUrl: 'dialog-create-course.html',
-})
-// tslint:disable-next-line:component-class-suffix
-export class DialogCreateCourse {
-  form: FormGroup;
-  constructor(
-    public dialogRef: MatDialogRef<DialogCreateCourse>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {
-    this.form = data.form;
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}

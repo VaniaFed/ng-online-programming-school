@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 export interface Tile {
   text: string;
@@ -11,13 +11,8 @@ export interface Tile {
   templateUrl: './tile.component.html',
   styleUrls: ['./tile.component.css']
 })
-export class TileComponent implements OnInit {
+export class TileComponent {
   @Input() text: string;
   @Input() imgSrc: string;
   @Input() linkHref: string | any[];
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }
