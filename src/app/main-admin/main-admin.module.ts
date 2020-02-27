@@ -10,6 +10,7 @@ import {StudentsTableComponent} from './students-table/students-table.component'
 import {SharedModule} from '../shared/shared.module';
 import { DialogCreateCourseComponent } from './courses/dialog-create-course/dialog-create-course.component';
 import { DialogCreateStudentComponent } from './students-table/dialog-create-student/dialog-create-student.component';
+import { CoursesToTilePipe } from './courses/courses-to-tile.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DialogCreateStudentComponent } from './students-table/dialog-create-stu
     CoursesComponent,
     StudentsTableComponent,
     DialogCreateCourseComponent,
-    DialogCreateStudentComponent
+    DialogCreateStudentComponent,
+    CoursesToTilePipe
   ],
   imports: [
     CommonModule,

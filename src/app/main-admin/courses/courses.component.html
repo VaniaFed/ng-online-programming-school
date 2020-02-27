@@ -1,5 +1,5 @@
 <section class="admin__courses">
   <h2 class="title2">Courses</h2>
-  <tile-gallery [tiles]="coursesAsTile"></tile-gallery>
+  <tile-gallery [tiles]="courses$ | async | coursesToTile"></tile-gallery>
   <button class="courses__add-course" (click)="openDialogCreateCourse()" mat-raised-button color="primary">Add a courses</button>
 </section>

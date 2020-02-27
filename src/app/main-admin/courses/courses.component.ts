@@ -6,8 +6,6 @@ import {Observable} from 'rxjs';
 import {addCourse} from './courses.actions';
 import { CoursesState } from './courses.reducer';
 import {ICourse} from './types';
-import {coursesToTile} from './coursesToTile';
-import {Tile} from '../../shared/tile/tile.component';
 import { DialogCreateCourseComponent } from './dialog-create-course/dialog-create-course.component';
 
 @Component({
@@ -18,7 +16,6 @@ import { DialogCreateCourseComponent } from './dialog-create-course/dialog-creat
 export class CoursesComponent {
   coursesForm: FormGroup;
   courses$: Observable<any>;
-  coursesAsTile: Tile[];
 
   constructor(private dialog: MatDialog, formBuilder: FormBuilder, private store: Store<CoursesState>) {
     this.coursesForm = formBuilder.group({
@@ -26,9 +23,7 @@ export class CoursesComponent {
       imgSrc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
     });
     this.courses$ = store.pipe(select('courses'));
-    this.courses$.subscribe(({courses}) => {
-      this.coursesAsTile = coursesToTile(courses);
-    });
+    this.courses$.subscribe();
   }
 
   addCourse(course: ICourse) {
