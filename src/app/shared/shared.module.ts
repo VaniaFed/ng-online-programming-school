@@ -6,6 +6,7 @@ import {RouterModule} from '@angular/router';
 
 import {TileGalleryComponent} from './tile-gallery/tile-gallery.component';
 import {TileComponent} from './tile/tile.component';
+import {HttpClientModule} from '@angular/common/http';
 
 const components = [
   TileGalleryComponent,
@@ -14,6 +15,7 @@ const components = [
 
 const modules = [
   CommonModule,
+  HttpClientModule,
   RouterModule,
   FormsModule,
   ReactiveFormsModule,

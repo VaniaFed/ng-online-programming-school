@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {CoursesService} from './courses.service';
 
 @Component({
   selector: 'app-course-admin',
@@ -9,10 +10,15 @@ import { ActivatedRoute } from '@angular/router';
 export class CourseAdminComponent implements OnInit {
   courseId: string;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute, coursesService: CoursesService) {
     activatedRoute.params.subscribe(({ id }) => {
-      console.log(id);
       this.courseId = id;
+      coursesService.courses$.subscribe(courses => {
+        console.log(courses);
+      });
+      // coursesService.courses$.subscribe((courses) => {
+      //   console.log(courses);
+      // });
       // http request in fucking service
       // make a queryToBackend for getting
       // get a course

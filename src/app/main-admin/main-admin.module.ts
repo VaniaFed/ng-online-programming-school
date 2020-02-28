@@ -14,7 +14,6 @@ import { CoursesToTilePipe } from './courses/courses-to-tile.pipe';
 
 @NgModule({
   declarations: [
-    CourseAdminComponent,
     MainAdminComponent,
     CoursesComponent,
     StudentsTableComponent,
