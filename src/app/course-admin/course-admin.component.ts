@@ -13,17 +13,9 @@ export class CourseAdminComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, coursesService: CoursesService) {
     activatedRoute.params.subscribe(({ id }) => {
       this.courseId = id;
-      coursesService.courses$.subscribe(courses => {
-        console.log(courses);
+      coursesService.getCourse(this.courseId).subscribe(course => {
+        console.log(course);
       });
-      // coursesService.courses$.subscribe((courses) => {
-      //   console.log(courses);
-      // });
-      // http request in fucking service
-      // make a queryToBackend for getting
-      // get a course
-      // give a course in redux
-      // take a course from redux and render it
     });
   }
 
