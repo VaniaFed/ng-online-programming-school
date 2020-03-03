@@ -7,6 +7,16 @@ router.get('/students', (req, res) => {
       id: 1,
       fullName: 'Ivan',
       course: 'Angular'
+    },
+    {
+      id: 2,
+      fullName: 'Roman',
+      course: 'React'
+    },
+    {
+      id: 3,
+      fullName: 'Vladimir',
+      course: 'Vue'
     }
   ];
   res.status(200).json(students);

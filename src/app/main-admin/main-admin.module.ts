@@ -11,6 +11,7 @@ import { DialogCreateCourseComponent } from './courses/dialog-create-course/dial
 import { DialogCreateStudentComponent } from './students-table/dialog-create-student/dialog-create-student.component';
 import { CoursesToTilePipe } from './courses/courses-to-tile.pipe';
 import {HttpClientModule} from '@angular/common/http';
+import {StudentsService} from './students-table/students.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {HttpClientModule} from '@angular/common/http';
   entryComponents: [
     DialogCreateCourseComponent,
     DialogCreateStudentComponent
-  ]
+  ],
+  providers: [StudentsService]
 })
 export class MainAdminModule {}

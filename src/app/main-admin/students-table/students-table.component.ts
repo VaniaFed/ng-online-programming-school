@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material';
-import {Subject} from 'rxjs';
 
 import {IStudent} from '../courses/types';
 import {DialogCreateStudentComponent} from './dialog-create-student/dialog-create-student.component';
+import {StudentsService} from './students.service';
 
 interface TableRow {
   fullName: string;
@@ -18,26 +18,22 @@ interface TableRow {
 })
 export class StudentsTableComponent {
   tableColumns: string[] = ['fullName', 'course'];
-  students$: Subject<IStudent> = new Subject<IStudent>();
   tableRow: TableRow[] = [];
   studentsForm: FormGroup;
 
-  constructor(private dialog: MatDialog, private formBuilder: FormBuilder) {
+  constructor(
+    private dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private studentsService: StudentsService
+  ) {
     this.studentsForm = formBuilder.group({
       fullName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
       course: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
     });
-    // fetch students
-    const tmpStudent: IStudent = {
-      id: '1',
-      fullName: 'Ivan',
-      course: 'Angular'
-    };
-    this.students$
-      .subscribe((student) => {
-        this.tableRow = [...this.tableRow, student];
-      });
-    this.students$.next(tmpStudent);
+
+    studentsService.getStudents().subscribe(students => {
+      this.tableRow = students;
+    });
   }
 
   addStudent(student: IStudent) {}
