@@ -36,7 +36,12 @@ export class StudentsTableComponent {
     });
   }
 
-  addStudent(student: IStudent) {}
+  addStudent(student: IStudent) {
+    this.studentsService.addStudent(student)
+      .subscribe(
+        () => this.tableRow = [...this.tableRow, student]
+      );
+  }
 
   openDialogCreateStudent() {
     const dialogCreateStudentRef = this.dialog.open(DialogCreateStudentComponent, {

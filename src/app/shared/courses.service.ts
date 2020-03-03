@@ -4,13 +4,13 @@ import {ICourse} from '../main-admin/courses/types';
 
 @Injectable()
 export class CoursesService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   getCourses() {
-    return this.httpClient.get<ICourse[]>(`api/courses/`);
+    return this.http.get<ICourse[]>(`api/courses/`);
   }
   getCourse(id) {
-    return this.httpClient.get<ICourse>(`api/courses/${id}`);
+    return this.http.get<ICourse>(`api/courses/${id}`);
   }
   addCourse(course: ICourse) {
     const courseString = JSON.stringify(course);
@@ -19,6 +19,6 @@ export class CoursesService {
         'Content-Type':  'application/json'
       })
     };
-    return this.httpClient.post<string>('api/add-course/', courseString, httpOptions);
+    return this.http.post<string>('api/add-course/', courseString, httpOptions);
   }
 }

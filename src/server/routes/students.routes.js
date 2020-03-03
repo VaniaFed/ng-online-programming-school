@@ -22,5 +22,16 @@ router.get('/students', (req, res) => {
   res.status(200).json(students);
 });
 
+router.post('/add-student/', (req, res) => {
+  const student = req.body;
+  console.log(student);
+  // TODO: put a student to DB
+  const status = {
+    success: true,
+    err: null,
+  };
+  res.status(200).json(status);
+});
+
 module.exports = router;
 
