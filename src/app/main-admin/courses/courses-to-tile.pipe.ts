@@ -6,7 +6,7 @@ import {coursesToTile} from './coursesToTile';
   name: 'coursesToTile'
 })
 export class CoursesToTilePipe implements PipeTransform {
-  transform(courses: {courses: ICourse[]} ): any {
-    return coursesToTile(courses.courses);
+  transform(courses: ICourse[]): any {
+    return coursesToTile(courses);
   }
 }

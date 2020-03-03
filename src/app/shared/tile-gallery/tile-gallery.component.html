@@ -1,6 +1,6 @@
 <div class="gallery">
   <app-tile
-    *ngFor="let tile of tiles;"
+    *ngFor="let tile of tiles; trackBy: track"
     [text]="tile.text"
     [imgSrc]="tile.imgSrc"
     [linkHref]="tile.linkHref">

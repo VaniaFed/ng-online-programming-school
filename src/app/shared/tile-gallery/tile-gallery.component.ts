@@ -8,4 +8,10 @@ import {Tile} from '../tile/tile.component';
 })
 export class TileGalleryComponent {
   @Input() tiles: Tile[];
+  track(_, item) {
+    if (!item) {
+      return null;
+    }
+    return item.id;
+  }
 }

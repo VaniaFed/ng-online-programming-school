@@ -7,6 +7,7 @@ import {RouterModule} from '@angular/router';
 import {TileGalleryComponent} from './tile-gallery/tile-gallery.component';
 import {TileComponent} from './tile/tile.component';
 import {HttpClientModule} from '@angular/common/http';
+import {CoursesService} from './courses.service';
 
 const components = [
   TileGalleryComponent,
@@ -36,6 +37,7 @@ const modules = [
   exports: [
     ...components,
     ...modules
-  ]
+  ],
+  providers: [CoursesService]
 })
 export class SharedModule { }

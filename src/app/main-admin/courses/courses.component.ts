@@ -1,12 +1,9 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Store, select} from '@ngrx/store';
 import {MatDialog} from '@angular/material';
-import {Observable} from 'rxjs';
-import {addCourse} from './courses.actions';
-import { CoursesState } from './courses.reducer';
 import {ICourse} from './types';
 import { DialogCreateCourseComponent } from './dialog-create-course/dialog-create-course.component';
+import {CoursesService} from '../../shared/courses.service';
 
 @Component({
   selector: 'courses',
@@ -15,31 +12,36 @@ import { DialogCreateCourseComponent } from './dialog-create-course/dialog-creat
 })
 export class CoursesComponent {
   coursesForm: FormGroup;
-  courses$: Observable<any>;
+  public courses: ICourse[] = [];
 
-  constructor(private dialog: MatDialog, formBuilder: FormBuilder, private store: Store<CoursesState>) {
+  constructor(private dialog: MatDialog, formBuilder: FormBuilder, private coursesService: CoursesService) {
     this.coursesForm = formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
       imgSrc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
     });
-    this.courses$ = store.pipe(select('courses'));
-    this.courses$.subscribe();
+    coursesService.getCourses()
+      .subscribe(
+        courses => this.courses = courses
+      );
   }
 
   addCourse(course: ICourse) {
-    this.store.dispatch(addCourse({course}));
+    this.coursesService.addCourse(course)
+      .subscribe(
+        () => this.courses = [...this.courses, course]
+      );
   }
 
   openDialogCreateCourse() {
     const dialogCreateCourseRef = this.dialog.open(DialogCreateCourseComponent, {
       data: { form: this.coursesForm }
     });
-    dialogCreateCourseRef.afterClosed().subscribe((course: ICourse) => {
-      if (course !== undefined) {
-        this.addCourse(course);
-      }
-      this.coursesForm.reset();
-    });
+    dialogCreateCourseRef.afterClosed()
+      .subscribe((course: ICourse) => {
+        if (course !== undefined) {
+          this.addCourse(course);
+        }
+        this.coursesForm.reset();
+      });
   }
 }
-
