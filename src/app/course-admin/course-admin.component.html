@@ -1,5 +1,7 @@
 <div class="container">
-  <mat-spinner *ngIf="this.shouldShowSpinner"></mat-spinner>
+  <app-overlay *ngIf="this.shouldShowSpinner">
+    <mat-spinner></mat-spinner>
+  </app-overlay>
   <div
     class="mb20">
     <app-tile
