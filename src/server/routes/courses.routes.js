@@ -65,4 +65,17 @@ router.post('/add-course/', (req, res) => {
   res.status(200).json(status);
 });
 
+router.post('/edit-course/', (req, res) => {
+  const course = req.body;
+  console.log('editing: ', course);
+  // TODO: put a course to DB
+  const status = {
+    success: true,
+    err: null,
+  };
+  setTimeout(() => {
+    res.status(200).json(status);
+  }, 1000);
+});
+
 module.exports = router;

@@ -21,4 +21,14 @@ export class CoursesService {
     };
     return this.http.post<string>('api/add-course/', courseString, httpOptions);
   }
+
+  editCourse(course: ICourse) {
+    const courseString = JSON.stringify(course);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post<string>('api/edit-course/', courseString, httpOptions);
+  }
 }

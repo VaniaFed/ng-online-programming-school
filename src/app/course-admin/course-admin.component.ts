@@ -17,9 +17,13 @@ export class CourseAdminComponent {
   course: ICourse = new Course();
   courseAsTile: ITile = new Tile();
   form: FormGroup;
-  constructor(private activatedRoute: ActivatedRoute,
-              private coursesService: CoursesService,
-              private formBuilder: FormBuilder) {
+  status;
+  shouldShowSpinner = false;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private coursesService: CoursesService,
+    private formBuilder: FormBuilder
+  ) {
     activatedRoute.params
       .subscribe(
         ({ id }) => this.init(id)
@@ -32,6 +36,7 @@ export class CourseAdminComponent {
   }
 
   init(id) {
+    this.shouldShowSpinner = true;
     this.coursesService.getCourse(id)
       .subscribe(
         course => {
@@ -40,11 +45,20 @@ export class CourseAdminComponent {
           this.form.controls.name.setValue(course.name);
           this.form.controls.price.setValue(course.price);
           this.form.controls.imgSrc.setValue(course.imgSrc);
+          this.shouldShowSpinner = false;
         }
       );
   }
 
-  changeCourse(value: any) {
-    console.log(value);
+  changeCourse(editedCourse: any) {
+    this.shouldShowSpinner = true;
+    const course: ICourse = {
+      id: this.course.id,
+      ...editedCourse
+    };
+    this.coursesService.editCourse(course).subscribe(res => {
+      console.log(res);
+      this.shouldShowSpinner = false;
+    });
   }
 }
