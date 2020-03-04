@@ -37,13 +37,13 @@ router.get('/courses/:id', (req, res) => {
       id: '2',
       name: 'Angular course',
       price: '$40',
-      imgSrc: 'https://s3.tproger.ru/uploads/2016/10/reactmini.png'
+      imgSrc: 'https://miro.medium.com/max/8192/1*PjxaUpMULTLqXNpqCtz0kg.png'
     },
     {
       id: '3',
       name: 'Vue course',
       price: '$60',
-      imgSrc: 'https://s3.tproger.ru/uploads/2016/10/reactmini.png'
+      imgSrc: 'https://media.proglib.io/wp-uploads/2018/07/1_qnI8K0Udjw4lciWDED4HGw.png'
     },
   ];
   const courseId = req.params.id;

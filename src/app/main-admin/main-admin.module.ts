@@ -9,7 +9,6 @@ import {StudentsTableComponent} from './students-table/students-table.component'
 import {SharedModule} from '../shared/shared.module';
 import { DialogCreateCourseComponent } from './courses/dialog-create-course/dialog-create-course.component';
 import { DialogCreateStudentComponent } from './students-table/dialog-create-student/dialog-create-student.component';
-import { CoursesToTilePipe } from './courses/courses-to-tile.pipe';
 import {HttpClientModule} from '@angular/common/http';
 import {StudentsService} from './students-table/students.service';
 
@@ -19,8 +18,7 @@ import {StudentsService} from './students-table/students.service';
     CoursesComponent,
     StudentsTableComponent,
     DialogCreateCourseComponent,
-    DialogCreateStudentComponent,
-    CoursesToTilePipe
+    DialogCreateStudentComponent
   ],
   imports: [
     CommonModule,

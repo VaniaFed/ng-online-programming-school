@@ -8,10 +8,11 @@ import {TileGalleryComponent} from './tile-gallery/tile-gallery.component';
 import {TileComponent} from './tile/tile.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CoursesService} from './courses.service';
+import {CoursesToTilePipe} from '../main-admin/courses/courses-to-tile.pipe';
 
 const components = [
   TileGalleryComponent,
-  TileComponent,
+  TileComponent
 ];
 
 const modules = [
@@ -29,14 +30,16 @@ const modules = [
 
 @NgModule({
   declarations: [
-    ...components
+    ...components,
+    CoursesToTilePipe
   ],
   imports: [
     ...modules
   ],
   exports: [
     ...components,
-    ...modules
+    ...modules,
+    CoursesToTilePipe
   ],
   providers: [CoursesService]
 })

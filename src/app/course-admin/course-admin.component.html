@@ -1,1 +1,23 @@
-<h1>Course {{this.course | json}}</h1>
+<div class="container">
+  <div
+    class="mb20">
+    <app-tile
+      [text]="courseAsTile.text"
+      [imgSrc]="courseAsTile.imgSrc"
+    >
+    </app-tile>
+  </div>
+  <h1 class="mb20">Edit a course</h1>
+  <form [formGroup]="form" (ngSubmit)="changeCourse(form.value)">
+    <mat-form-field class="full-width mb10">
+      <input matInput formControlName="name" type="text" placeholder="Name">
+    </mat-form-field>
+    <mat-form-field class="full-width mb10">
+      <input matInput formControlName="price" type="text" placeholder="Price">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput formControlName="imgSrc" type="text" placeholder="Image path">
+    </mat-form-field>
+    <button type="submit" mat-button [disabled]="form.invalid">Edit</button>
+  </form>
+</div>

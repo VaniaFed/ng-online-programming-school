@@ -7,8 +7,7 @@ import {CoursesService} from '../../shared/courses.service';
 
 @Component({
   selector: 'courses',
-  templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.css']
+  templateUrl: './courses.component.html'
 })
 export class CoursesComponent {
   coursesForm: FormGroup;

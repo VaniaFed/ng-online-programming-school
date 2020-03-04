@@ -1,12 +1,8 @@
 import {ICourse} from './types';
+import {courseToTile} from '../../../libs/courseToTile';
+import {Tile} from '../../shared/tile/tile.component';
 
-export const coursesToTile = (courses: ICourse[]) => {
-  return courses.map(({name, imgSrc, id}) => {
-    return {
-      text: name,
-      imgSrc,
-      linkHref: id
-    };
-  });
+export const coursesToTile = (courses: ICourse[]): Tile[] => {
+  return courses.map((course: ICourse) => courseToTile(course));
 };
 

@@ -1,11 +1,14 @@
 .tile {
   color: #333;
   text-decoration: none;
+  height: 100px;
 }
 
 .tile__image {
   margin-bottom: 4px;
   max-height: 200px;
+  height: 100%;
+  object-fit: cover;
 }
 
 .tile__title {
