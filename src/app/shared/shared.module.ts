@@ -17,6 +17,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {CoursesService} from './courses.service';
 import {CoursesToTilePipe} from '../main-admin/courses/courses-to-tile.pipe';
 import { OverlayComponent } from './overlay/overlay.component';
+import {LessonsService} from './lessons.service';
 
 const components = [
   TileGalleryComponent,
@@ -51,6 +52,6 @@ const modules = [
     ...modules,
     CoursesToTilePipe
   ],
-  providers: [CoursesService]
+  providers: [CoursesService, LessonsService]
 })
 export class SharedModule { }

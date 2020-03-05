@@ -7,6 +7,7 @@ import {courseToTile} from '../../libs/courseToTile';
 import {Tile} from '../shared/tile/tile.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Course} from '../main-admin/courses/course.model';
+import {LessonsService} from '../shared/lessons.service';
 
 @Component({
   selector: 'app-course-admin',
@@ -22,6 +23,7 @@ export class CourseAdminComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private coursesService: CoursesService,
+    private lessonsService: LessonsService,
     private formBuilder: FormBuilder
   ) {
     activatedRoute.params
@@ -48,6 +50,10 @@ export class CourseAdminComponent {
           this.shouldShowSpinner = false;
         }
       );
+    this.lessonsService.getLessonsByCourseId(id)
+      .subscribe(lessons => {
+        console.log(lessons);
+      });
   }
 
   changeCourse(editedCourse: any) {
