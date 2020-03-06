@@ -28,7 +28,7 @@ export class CourseAdminComponent {
   ) {
     activatedRoute.params
       .subscribe(
-        ({ id }) => this.init(id)
+        ({ id: courseId }) => this.init(courseId)
       );
     this.form = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
@@ -37,9 +37,9 @@ export class CourseAdminComponent {
     });
   }
 
-  init(id) {
+  init(courseId) {
     this.shouldShowSpinner = true;
-    this.coursesService.getCourse(id)
+    this.coursesService.getCourse(courseId)
       .subscribe(
         course => {
           this.course = course;
@@ -50,7 +50,7 @@ export class CourseAdminComponent {
           this.shouldShowSpinner = false;
         }
       );
-    this.lessonsService.getLessonsByCourseId(id)
+    this.lessonsService.getLessonsByCourseId(courseId)
       .subscribe(lessons => {
         console.log(lessons);
       });
