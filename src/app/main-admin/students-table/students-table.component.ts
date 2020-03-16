@@ -6,7 +6,7 @@ import {IStudent} from '../courses/types';
 import {DialogCreateStudentComponent} from './dialog-create-student/dialog-create-student.component';
 import {StudentsService} from './students.service';
 
-interface TableRow {
+export interface TableRow {
   fullName: string;
   course: string;
 }
@@ -31,7 +31,8 @@ export class StudentsTableComponent {
       course: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
     });
 
-    studentsService.getStudents().subscribe(students => {
+    const students$ = studentsService.getStudents();
+    students$.subscribe(students => {
       this.tableRow = students;
     });
   }

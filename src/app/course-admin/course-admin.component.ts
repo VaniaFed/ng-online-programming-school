@@ -39,21 +39,21 @@ export class CourseAdminComponent {
 
   init(courseId) {
     this.shouldShowSpinner = true;
-    this.coursesService.getCourse(courseId)
-      .subscribe(
-        course => {
-          this.course = course;
-          this.courseAsTile = courseToTile(course);
-          this.form.controls.name.setValue(course.name);
-          this.form.controls.price.setValue(course.price);
-          this.form.controls.imgSrc.setValue(course.imgSrc);
-          this.shouldShowSpinner = false;
-        }
-      );
-    this.lessonsService.getLessonsByCourseId(courseId)
-      .subscribe(lessons => {
-        console.log(lessons);
-      });
+    const course$ = this.coursesService.getCourse(courseId);
+    course$.subscribe(
+      course => {
+        this.course = course;
+        this.courseAsTile = courseToTile(course);
+        this.form.controls.name.setValue(course.name);
+        this.form.controls.price.setValue(course.price);
+        this.form.controls.imgSrc.setValue(course.imgSrc);
+        this.shouldShowSpinner = false;
+      }
+    );
+    const lessons$ = this.lessonsService.getLessonsByCourseId(courseId);
+    lessons$.subscribe(lessons => {
+      console.log(lessons);
+    });
   }
 
   changeCourse(editedCourse: any) {

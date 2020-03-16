@@ -11,7 +11,7 @@
     </app-tile>
   </div>
   <h1 class="mb20">Edit a course</h1>
-  <form [formGroup]="form" (ngSubmit)="changeCourse(form.value)">
+  <form [formGroup]="form" (ngSubmit)="changeCourse(form.value)" class="mb60">
     <mat-form-field class="full-width mb10">
       <input matInput formControlName="name" type="text" placeholder="Name">
     </mat-form-field>
@@ -23,4 +23,5 @@
     </mat-form-field>
     <button type="submit" color="primary" mat-raised-button [disabled]="form.invalid">Edit</button>
   </form>
+  <course-lessons></course-lessons>
 </div>

@@ -1,0 +1,34 @@
+should be smart
+  course-admin OK
+  main-admin OK
+  dialog-create-course OK
+  dialog-create-student OK
+
+should be dump
+  app OK
+  overlay OK
+  tile OK
+  tile-gallery OK
+  lessons-table WILL BE OK
+  courses
+  students-table
+
+components we use services
+  course-admin
+  courses
+  students-table
+
+should be refactored
+  course-admin - should create course-form component
+  students-table - should rename to students-section; addCourse students-table component
+  make a dialog component reusable - in order to do this I need:
+  get data:
+    1. title
+    2. array of {formControlName, placeholder}
+    3. action name
+
+
+in order to make reusable components we should ask a question:
+should this component know about anything? e.g.: some logic, data flow and events
+if not, we should make this component dumb and move this logic into a smart one
+

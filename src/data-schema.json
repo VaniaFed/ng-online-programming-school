@@ -1,0 +1,31 @@
+{
+  "requests": [
+    "courses DONE",
+    "course(id) DONE",
+    "subjectsByCourseId(courseId) DONE",
+    "subject(id) DONE",
+    "students DONE"
+  ],
+  "todo": [
+    "add get students request DONE",
+    "make a request in order to fill in the table",
+    "make a markup admin/courses/:id page"
+  ],
+  "schemes": {
+    "subjects": [
+      {
+        "id": "1",
+        "name": "Introduction",
+        "description": "Lorem imsum description",
+        "text_content": "LOREM text content",
+        "course_id": "1"
+      }
+    ]
+  },
+  "todo": [
+    "add lessons-table component",
+    "read about smart and dump components and refactor the code"
+  ]
+}
+
+

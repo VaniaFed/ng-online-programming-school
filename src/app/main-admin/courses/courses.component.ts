@@ -18,10 +18,10 @@ export class CoursesComponent {
       name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
       imgSrc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
     });
-    coursesService.getCourses()
-      .subscribe(
-        courses => this.courses = courses
-      );
+    const courses$ = coursesService.getCourses();
+    courses$.subscribe(
+      courses => this.courses = courses
+    );
   }
 
   addCourse(course: ICourse) {
