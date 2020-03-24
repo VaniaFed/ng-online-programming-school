@@ -1,14 +1,23 @@
 <h1>Lessons</h1>
-<table *ngIf="tableRow.length !== 0" mat-table [dataSource]="tableRow" class="full-width mb20">
-  <ng-container matColumnDef="fullName">
-    <th mat-header-cell *matHeaderCellDef> Full name </th>
-    <td mat-cell *matCellDef="let row"> {{row.fullName}} </td>
-  </ng-container>
-  <ng-container matColumnDef="course">
-    <th mat-header-cell *matHeaderCellDef> Course </th>
-    <td mat-cell *matCellDef="let row"> {{row.course}} </td>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
-  <tr mat-row *matRowDef="let myRowData; columns: tableColumns"></tr>
-</table>
-<button class="courses__add-course" (click)="addLesson($event)" mat-raised-button color="primary">Add a lesson</button>
+<div class="mb20">
+  <table *ngIf="lessons && lessons.length !== 0; else noOneLesson" mat-table [dataSource]="dataSource" class="full-width">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Full name </th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+    </ng-container>
+    <ng-container matColumnDef="textContent">
+      <th mat-header-cell *matHeaderCellDef> Text content </th>
+      <td mat-cell *matCellDef="let row"> {{row.textContent}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: tableColumns"></tr>
+  </table>
+  <ng-template #noOneLesson>
+    <h3>No one lesson exists</h3>
+  </ng-template>
+</div>
+<button class="courses__add-course" (click)="openDialogCreateLesson()" mat-raised-button color="primary">Add a lesson</button>

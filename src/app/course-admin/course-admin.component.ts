@@ -1,29 +1,25 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {CoursesService} from '../shared/courses.service';
 import {ICourse} from '../main-admin/courses/types';
-import {Tile as ITile} from '../shared/tile/tile.component';
 import {courseToTile} from '../../libs/courseToTile';
 import {Tile} from '../shared/tile/tile.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Course} from '../main-admin/courses/course.model';
-import {LessonsService} from '../shared/lessons.service';
 
 @Component({
   selector: 'app-course-admin',
-  templateUrl: './course-admin.component.html',
-  styleUrls: ['./course-admin.component.css']
+  templateUrl: './course-admin.component.html'
 })
 export class CourseAdminComponent {
-  course: ICourse = new Course();
-  courseAsTile: ITile = new Tile();
+  course = new Course();
+  courseAsTile = new Tile();
   form: FormGroup;
-  status;
   shouldShowSpinner = false;
+  courseId: string;
   constructor(
     private activatedRoute: ActivatedRoute,
     private coursesService: CoursesService,
-    private lessonsService: LessonsService,
     private formBuilder: FormBuilder
   ) {
     activatedRoute.params
@@ -39,6 +35,7 @@ export class CourseAdminComponent {
 
   init(courseId) {
     this.shouldShowSpinner = true;
+    this.courseId = courseId;
     const course$ = this.coursesService.getCourse(courseId);
     course$.subscribe(
       course => {
@@ -50,10 +47,6 @@ export class CourseAdminComponent {
         this.shouldShowSpinner = false;
       }
     );
-    const lessons$ = this.lessonsService.getLessonsByCourseId(courseId);
-    lessons$.subscribe(lessons => {
-      console.log(lessons);
-    });
   }
 
   changeCourse(editedCourse: any) {
@@ -62,8 +55,7 @@ export class CourseAdminComponent {
       id: this.course.id,
       ...editedCourse
     };
-    this.coursesService.editCourse(course).subscribe(res => {
-      console.log(res);
+    this.coursesService.editCourse(course).subscribe(() => {
       this.shouldShowSpinner = false;
     });
   }

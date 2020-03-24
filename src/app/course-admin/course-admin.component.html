@@ -23,5 +23,5 @@
     </mat-form-field>
     <button type="submit" color="primary" mat-raised-button [disabled]="form.invalid">Edit</button>
   </form>
-  <course-lessons></course-lessons>
+  <course-lessons [courseId]="courseId"></course-lessons>
 </div>
