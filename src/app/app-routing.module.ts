@@ -10,6 +10,15 @@ const routingSchematics: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'courses',
+    pathMatch: 'full',
+    loadChildren: () => import('./courses-page/courses-page.module').then(m => m.CoursesPageModule)
+  },
+  {
+    path: 'courses/:courseId',
+    loadChildren: () => import('./course-page/course-page.module').then(m => m.CoursePageModule)
+  },
+  {
     path: 'admin',
     pathMatch: 'full',
     loadChildren: () => import('./main-admin/main-admin.module').then(m => m.MainAdminModule)
@@ -21,7 +30,7 @@ const routingSchematics: Routes = [
   {
     path: 'admin/courses/:id',
     loadChildren: () => import('./course-admin/course-admin.module').then(m => m.CourseAdminModule)
-  },
+  }
 ];
 
 @NgModule({

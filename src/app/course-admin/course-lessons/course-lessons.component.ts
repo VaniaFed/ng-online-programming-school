@@ -38,19 +38,22 @@ export class CourseLessonsComponent implements OnInit {
   ngOnInit(): void {
     this.lessonsService.getLessonsByCourseId(this.courseId)
       .subscribe(lessons => {
+        this.lessons = lessons;
         this.dataSource.data = lessons;
       });
   }
 
   addLesson(lesson: ILesson) {
     this.lessonsService.addLesson(lesson).subscribe(() => {
-      const lessons = this.lessons;
-      lessons.push({
+      const newLesson = {
         id: String(Math.floor(Math.random() * 100)),
         ...lesson
-      });
-      this.lessons = lessons;
-      this.dataSource.data = lessons;
+      };
+      this.lessons = [
+        ...this.lessons,
+        newLesson
+      ];
+      this.dataSource.data = this.lessons;
     });
   }
 

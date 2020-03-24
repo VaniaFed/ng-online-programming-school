@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="course mb60" *ngIf="course">
+    <div class="mb20">
+      <app-tile [text]="course.name" [imgSrc]="course.imgSrc"></app-tile>
+    </div>
+    <p>{{course.description}}</p>
+    <p>Course's price: {{course.price}}</p>
+  </div>
+  <div class="lessons">
+    <h2 class="mb20">List of lessons</h2>
+    <div *ngFor="let lesson of lessons">
+      <ol>
+        <li class="mb10">
+          <h3>{{lesson.name}}</h3>
+          <p>{{lesson.description}}</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <button mat-button color="accent" mat-raised-button>Buy</button>
+</div>

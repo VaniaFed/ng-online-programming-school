@@ -15,8 +15,8 @@ import {TileGalleryComponent} from './tile-gallery/tile-gallery.component';
 import {TileComponent} from './tile/tile.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CoursesService} from './courses.service';
-import {CoursesToTilePipe} from '../main-admin/courses/courses-to-tile.pipe';
-import { OverlayComponent } from './overlay/overlay.component';
+import {CoursesToTilePipe} from './courses-to-tile.pipe';
+import {OverlayComponent} from './overlay/overlay.component';
 import {LessonsService} from './lessons.service';
 
 const components = [
@@ -42,7 +42,7 @@ const modules = [
 @NgModule({
   declarations: [
     ...components,
-    CoursesToTilePipe,
+    CoursesToTilePipe
   ],
   imports: [
     ...modules
