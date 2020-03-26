@@ -19,6 +19,10 @@ const routingSchematics: Routes = [
     loadChildren: () => import('./course-page/course-page.module').then(m => m.CoursePageModule)
   },
   {
+    path: 'lessons/:lessonId',
+    loadChildren: () => import('./lesson-page/lesson-page.module').then(m => m.LessonPageModule)
+  },
+  {
     path: 'admin',
     pathMatch: 'full',
     loadChildren: () => import('./main-admin/main-admin.module').then(m => m.MainAdminModule)

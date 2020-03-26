@@ -18,6 +18,7 @@ import {CoursesService} from './courses.service';
 import {CoursesToTilePipe} from './courses-to-tile.pipe';
 import {OverlayComponent} from './overlay/overlay.component';
 import {LessonsService} from './lessons.service';
+import {SafePipe} from './safe.pipe';
 
 const components = [
   TileGalleryComponent,
@@ -39,10 +40,15 @@ const modules = [
   MatProgressSpinnerModule
 ];
 
+const pipes = [
+  CoursesToTilePipe,
+  SafePipe
+];
+
 @NgModule({
   declarations: [
     ...components,
-    CoursesToTilePipe
+    ...pipes
   ],
   imports: [
     ...modules
@@ -50,7 +56,7 @@ const modules = [
   exports: [
     ...components,
     ...modules,
-    CoursesToTilePipe
+    ...pipes
   ],
   providers: [CoursesService, LessonsService]
 })

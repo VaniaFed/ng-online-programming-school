@@ -1,21 +1,21 @@
-<div class="container">
-  <div class="course mb60" *ngIf="course">
+<div *ngIf="course" class="container">
+  <div class="course mb60">
     <div class="mb20">
       <app-tile [text]="course.name" [imgSrc]="course.imgSrc"></app-tile>
     </div>
     <p>{{course.description}}</p>
-    <p>Course's price: {{course.price}}</p>
   </div>
   <div class="lessons">
     <h2 class="mb20">List of lessons</h2>
-    <div *ngFor="let lesson of lessons">
-      <ol>
-        <li class="mb10">
+    <ol>
+      <li *ngFor="let lesson of lessons" class="mb10">
+        <a [routerLink]="['/', 'lessons', lesson.id]">
           <h3>{{lesson.name}}</h3>
           <p>{{lesson.description}}</p>
-        </li>
-      </ol>
-    </div>
+        </a>
+      </li>
+    </ol>
   </div>
-  <button mat-button color="accent" mat-raised-button>Buy</button>
+  <p class="mb20">Course's price: {{course.price}}</p>
+  <button mat-button color="accent" mat-raised-button>Add to my courses</button>
 </div>

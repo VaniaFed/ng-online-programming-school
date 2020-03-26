@@ -9,6 +9,7 @@ export interface ILesson {
   id: string;
   name: string;
   description: string;
+  videoUrl?: string;
   textContent: string;
   courseId: string;
 }

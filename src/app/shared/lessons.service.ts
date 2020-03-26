@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ILesson} from '../course-admin/course-lessons/course-lessons.component';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class LessonsService {
@@ -22,7 +23,15 @@ export class LessonsService {
     return this.http.get<ILesson[]>(`api/courses/${courseId}/lessons/`);
   }
 
-  getLessonsById(id) {}
+  getLessonById(lessonId) {
+    return this.http.get<ILesson>(`api/lessons/${lessonId}/`)
+      .pipe(
+        map(lesson => ({
+          ...lesson,
+            videoUrl: this.makeVideoUrlFull(lesson.videoUrl)
+        }))
+      );
+  }
 
   addLesson(lesson: ILesson) {
     const { lessonString, httpOptions } = LessonsService.getBodyAndOptions(lesson);
@@ -32,6 +41,10 @@ export class LessonsService {
   editLesson(lesson: ILesson) {
     const { lessonString, httpOptions } = LessonsService.getBodyAndOptions(lesson);
     return this.http.post<ILesson>(`api/edit-lesson`, lessonString, httpOptions);
+  }
+
+  makeVideoUrlFull(video) {
+    return `https://www.youtube.com/embed/${video}`;
   }
 
 }

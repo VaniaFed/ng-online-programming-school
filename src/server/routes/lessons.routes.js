@@ -9,6 +9,7 @@ router.get('/lessons/:id', (req, res) => {
       id: 1,
       name: 'Introduction',
       description: 'Here we go',
+      videoUrl: 'EAONyIKrZN0',
       textContent: 'so long',
       courseId: '1'
     },
@@ -16,6 +17,7 @@ router.get('/lessons/:id', (req, res) => {
       id: 2,
       name: 'Components',
       description: 'Components are amazing',
+      videoUrl: 'fd2Cayhez58',
       textContent: 'so long',
       courseId: '1'
     },
@@ -23,6 +25,7 @@ router.get('/lessons/:id', (req, res) => {
       id: 3,
       name: 'Services',
       description: 'service is a good thing',
+      videoUrl: 'pwuGBvOPFYI',
       textContent: 'so long',
       courseId: '1'
     }
