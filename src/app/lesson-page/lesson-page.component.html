@@ -1,18 +1,25 @@
 <div *ngIf="course && lesson" class="container">
   <div>
-    <h1>{{lesson.name}}</h1>
-    <breadcrumbs [breadcrumbs]="breadcrumbsData" separator=" — "></breadcrumbs>
-    <p>
-      {{lesson.description}}
-    </p>
-    <iframe
-      [src]="lesson.videoUrl | safe"
-      width="100%"
-      height="600"
-      frameborder="0"
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
+    <div class="mb20">
+      <app-tile [text]="course.name" [imgSrc]="course.imgSrc"></app-tile>
+      <breadcrumbs [breadcrumbs]="breadcrumbsData" separator=" — "></breadcrumbs>
+    </div>
+    <app-section [title]="lesson.name">
+      <p>
+        {{lesson.textContent}}
+      </p>
+    </app-section>
+    <app-section title="Video">
+      <iframe
+        [src]="lesson.videoUrl | safe"
+        width="100%"
+        height="600"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+      <a mat-fab [routerLink]="['/', 'lessons', lesson.id - 1]">prev</a>
+      <a mat-fab [routerLink]="['/', 'lessons', lesson.id + 1]">next</a>
+    </app-section>
   </div>
-  <a [routerLink]="['/', 'lessons', lesson.id + 1]">next lesson</a>
 </div>

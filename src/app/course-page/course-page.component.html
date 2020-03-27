@@ -1,21 +1,24 @@
 <div *ngIf="course" class="container">
-  <div class="course mb60">
+  <div class="course mb30">
     <div class="mb20">
       <app-tile [text]="course.name" [imgSrc]="course.imgSrc"></app-tile>
     </div>
-    <p>{{course.description}}</p>
+    <app-section title="Review">
+      <p class="mb10">{{course.description}}</p>
+      <p class="mb10">Course's price: {{course.price}}</p>
+      <button mat-button color="accent" mat-raised-button>Add to my courses</button>
+    </app-section>
   </div>
   <div class="lessons">
-    <h2 class="mb20">List of lessons</h2>
-    <ol>
-      <li *ngFor="let lesson of lessons" class="mb10">
-        <a class="lesson__link" [routerLink]="['/', 'lessons', lesson.id]">
-          <h3>{{lesson.name}}</h3>
-          <p>{{lesson.description}}</p>
-        </a>
-      </li>
-    </ol>
+    <app-section title="Lessons">
+      <ul class="lessons-holder">
+        <li *ngFor="let lesson of lessons, index as index" class="mb10 lessons__item">
+          <a class="lesson__link" [routerLink]="['/', 'lessons', lesson.id]">
+            <h3>{{index+1}}. {{lesson.name}}</h3>
+            <p>{{lesson.description}}</p>
+          </a>
+        </li>
+      </ul>
+    </app-section>
   </div>
-  <p class="mb20">Course's price: {{course.price}}</p>
-  <button mat-button color="accent" mat-raised-button>Add to my courses</button>
 </div>

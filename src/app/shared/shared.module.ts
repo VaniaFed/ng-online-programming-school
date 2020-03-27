@@ -20,12 +20,14 @@ import {OverlayComponent} from './overlay/overlay.component';
 import {LessonsService} from './lessons.service';
 import {SafePipe} from './safe.pipe';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { SectionComponent } from './section/section.component';
 
 const components = [
   TileGalleryComponent,
   TileComponent,
   OverlayComponent,
-  BreadcrumbsComponent
+  BreadcrumbsComponent,
+  SectionComponent,
 ];
 
 const modules = [
