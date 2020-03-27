@@ -6,7 +6,7 @@ import {CourseAdminComponent} from './course-admin/course-admin.component';
 const routingSchematics: Routes = [
   {
     path: '',
-    redirectTo: 'admin',
+    redirectTo: 'courses',
     pathMatch: 'full'
   },
   {

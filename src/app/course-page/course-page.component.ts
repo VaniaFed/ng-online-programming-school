@@ -7,7 +7,8 @@ import {ILesson} from '../course-admin/course-lessons/course-lessons.component';
 
 @Component({
   selector: 'app-course-papge',
-  templateUrl: './course-page.component.html'
+  templateUrl: './course-page.component.html',
+  styleUrls: ['./course-page.component.css']
 })
 export class CoursePageComponent implements OnInit {
   courseId: string;

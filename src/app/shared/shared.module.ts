@@ -19,11 +19,13 @@ import {CoursesToTilePipe} from './courses-to-tile.pipe';
 import {OverlayComponent} from './overlay/overlay.component';
 import {LessonsService} from './lessons.service';
 import {SafePipe} from './safe.pipe';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 
 const components = [
   TileGalleryComponent,
   TileComponent,
-  OverlayComponent
+  OverlayComponent,
+  BreadcrumbsComponent
 ];
 
 const modules = [
@@ -48,7 +50,7 @@ const pipes = [
 @NgModule({
   declarations: [
     ...components,
-    ...pipes
+    ...pipes,
   ],
   imports: [
     ...modules

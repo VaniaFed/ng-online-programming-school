@@ -9,7 +9,7 @@
     <h2 class="mb20">List of lessons</h2>
     <ol>
       <li *ngFor="let lesson of lessons" class="mb10">
-        <a [routerLink]="['/', 'lessons', lesson.id]">
+        <a class="lesson__link" [routerLink]="['/', 'lessons', lesson.id]">
           <h3>{{lesson.name}}</h3>
           <p>{{lesson.description}}</p>
         </a>

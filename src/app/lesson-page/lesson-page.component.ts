@@ -4,6 +4,8 @@ import {ILesson} from '../course-admin/course-lessons/course-lessons.component';
 import {ActivatedRoute} from '@angular/router';
 import {ICourse} from '../main-admin/courses/types';
 import {CoursesService} from '../shared/courses.service';
+import {BreadcrumbItem} from '../shared/breadcrumbs/breadcrumbs.component';
+import {concatMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-lesson-page',
@@ -14,6 +16,7 @@ export class LessonPageComponent {
   lesson: ILesson;
   course: ICourse;
   lessonId: string;
+  breadcrumbsData: BreadcrumbItem[];
   constructor(
     private lessonsService: LessonsService,
     private coursesService: CoursesService,
@@ -24,13 +27,32 @@ export class LessonPageComponent {
         const {lessonId} = params;
         this.lessonId = lessonId;
       });
-    lessonsService.getLessonById(this.lessonId)
-      .subscribe(lesson => {
-        this.lesson = lesson;
-        coursesService.getCourse(this.lesson.courseId)
-          .subscribe(course => {
-            this.course = course;
-          });
-      });
+
+    const lesson$ = lessonsService.getLessonById(this.lessonId);
+    const course$ = lesson$
+      .pipe(
+        concatMap(lesson => {
+          this.lesson = lesson;
+          return coursesService.getCourse(lesson.courseId);
+        })
+      );
+
+    course$.subscribe((course) => {
+      this.course = course;
+      this.breadcrumbsData = [
+        {
+          url: '/courses',
+          title: 'Courses'
+        },
+        {
+          url: `/courses/${course.id}`,
+          title: course.name
+        },
+        {
+          url: `/lessons/${this.lesson.id}`,
+          title: this.lesson.name
+        }
+      ];
+    });
   }
 }
