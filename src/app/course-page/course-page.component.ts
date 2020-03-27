@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {CoursesService} from '../shared/courses.service';
 import {LessonsService} from '../shared/lessons.service';
 import {ILesson} from '../course-admin/course-lessons/course-lessons.component';
+import {BreadcrumbItem} from '../shared/breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-course-papge',
@@ -14,6 +15,7 @@ export class CoursePageComponent implements OnInit {
   courseId: string;
   course: ICourse;
   lessons: ILesson[];
+  breadcrumbsData: BreadcrumbItem[];
   constructor(private activatedRoute: ActivatedRoute,
               private coursesService: CoursesService,
               private lessonsService: LessonsService) {
@@ -23,6 +25,16 @@ export class CoursePageComponent implements OnInit {
     });
     coursesService.getCourse(this.courseId).subscribe(course => {
       this.course = course;
+      this.breadcrumbsData = [
+        {
+          url: '/courses',
+          title: 'Courses'
+        },
+        {
+          url: `/courses/${course.id}`,
+          title: course.name
+        }
+      ];
     });
     lessonsService.getLessonsByCourseId(this.courseId).subscribe(lessons => {
       this.lessons = lessons;

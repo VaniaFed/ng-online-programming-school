@@ -2,6 +2,7 @@
   <div class="course mb30">
     <div class="mb20">
       <app-tile [text]="course.name" [imgSrc]="course.imgSrc"></app-tile>
+      <breadcrumbs [breadcrumbs]="breadcrumbsData" separator=" — "></breadcrumbs>
     </div>
     <app-section title="Review">
       <p class="mb10">{{course.description}}</p>
