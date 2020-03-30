@@ -44,6 +44,7 @@ export class StudentsTableComponent {
       );
   }
 
+  // use when registration
   openDialogCreateStudent() {
     const dialogCreateStudentRef = this.dialog.open(DialogCreateStudentComponent, {
       data: { form: this.studentsForm }

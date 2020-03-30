@@ -1,12 +1,12 @@
 import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DialogCreateLessonComponent} from './dialog-create-lesson/dialog-create-lesson.component';
 import {LessonsService} from '../../shared/lessons.service';
 import {MatTableDataSource} from '@angular/material';
 
 export interface ILesson {
-  id: string;
+  _id: string;
   name: string;
   description: string;
   videoUrl?: string;
@@ -30,12 +30,12 @@ export class CourseLessonsComponent implements OnInit {
               private formBuilder: FormBuilder,
               private lessonsService: LessonsService) {
     this.lessonsForm = formBuilder.group({
-      name: [],
-      description: [],
-      textContent: []
+      name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
+      description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
+      textContent: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(299)]],
+      videoUrl: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]]
     });
   }
-
   ngOnInit(): void {
     this.lessonsService.getLessonsByCourseId(this.courseId)
       .subscribe(lessons => {
@@ -45,9 +45,9 @@ export class CourseLessonsComponent implements OnInit {
   }
 
   addLesson(lesson: ILesson) {
-    this.lessonsService.addLesson(lesson).subscribe(() => {
+    this.lessonsService.addLesson(lesson, this.courseId).subscribe(() => {
       const newLesson = {
-        id: String(Math.floor(Math.random() * 100)),
+        _id: String(Math.floor(Math.random() * 100)),
         ...lesson
       };
       this.lessons = [

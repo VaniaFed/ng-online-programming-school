@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start-server": "node ./src/server/index.js NODE_ENV=development PORT=3001"
+    "start-server": "nodemon server/index.js NODE_ENV=development PORT=3001"
   },
   "private": true,
   "dependencies": {
@@ -25,7 +25,11 @@
     "@ngrx/store": "^8.6.0",
     "@ngrx/store-devtools": "^8.6.0",
     "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "mongodb": "^3.5.5",
+    "mongoose": "^5.9.6",
+    "nodemon": "^2.0.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

@@ -16,7 +16,9 @@ export class CoursesComponent {
   constructor(private dialog: MatDialog, formBuilder: FormBuilder, private coursesService: CoursesService) {
     this.coursesForm = formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
-      imgSrc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
+      description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(300)]],
+      price: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
+      imgSrc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
     });
     const courses$ = coursesService.getCourses();
     courses$.subscribe(
@@ -38,6 +40,7 @@ export class CoursesComponent {
     dialogCreateCourseRef.afterClosed()
       .subscribe((course: ICourse) => {
         if (course !== undefined) {
+          console.log(course);
           this.addCourse(course);
         }
         this.coursesForm.reset();

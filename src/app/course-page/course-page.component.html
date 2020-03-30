@@ -14,7 +14,7 @@
     <app-section title="Lessons">
       <ul class="lessons-holder">
         <li *ngFor="let lesson of lessons, index as index" class="mb10 lessons__item">
-          <a class="lesson__link" [routerLink]="['/', 'lessons', lesson.id]">
+          <a class="lesson__link" [routerLink]="['/', 'lessons', lesson._id]">
             <h3>{{index+1}}. {{lesson.name}}</h3>
             <p>{{lesson.description}}</p>
           </a>

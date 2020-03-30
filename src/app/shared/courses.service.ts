@@ -13,7 +13,7 @@ export class CoursesService {
     return this.http.get<ICourse>(`api/courses/${id}`);
   }
   addCourse(course: ICourse) {
-    const courseString = JSON.stringify(course);
+    const courseString = JSON.stringify({course});
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
@@ -23,12 +23,12 @@ export class CoursesService {
   }
 
   editCourse(course: ICourse) {
-    const courseString = JSON.stringify(course);
+    const courseString = JSON.stringify({course});
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post<string>('api/edit-course/', courseString, httpOptions);
+    return this.http.patch<string>('api/edit-course/', courseString, httpOptions);
   }
 }

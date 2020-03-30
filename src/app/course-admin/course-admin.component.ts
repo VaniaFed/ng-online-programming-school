@@ -52,7 +52,7 @@ export class CourseAdminComponent {
   changeCourse(editedCourse: any) {
     this.shouldShowSpinner = true;
     const course: ICourse = {
-      id: this.course.id,
+      _id: this.course._id,
       ...editedCourse
     };
     this.coursesService.editCourse(course).subscribe(() => {

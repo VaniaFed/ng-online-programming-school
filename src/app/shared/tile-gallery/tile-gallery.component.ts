@@ -12,6 +12,6 @@ export class TileGalleryComponent {
     if (!item) {
       return null;
     }
-    return item.id;
+    return item._id;
   }
 }

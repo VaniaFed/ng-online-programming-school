@@ -31,7 +31,7 @@ export class CoursePageComponent implements OnInit {
           title: 'Courses'
         },
         {
-          url: `/courses/${course.id}`,
+          url: `/courses/${course._id}`,
           title: course.name
         }
       ];

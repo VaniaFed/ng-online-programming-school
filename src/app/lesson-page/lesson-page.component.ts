@@ -45,11 +45,11 @@ export class LessonPageComponent {
           title: 'Courses'
         },
         {
-          url: `/courses/${course.id}`,
+          url: `/courses/${course._id}`,
           title: course.name
         },
         {
-          url: `/lessons/${this.lesson.id}`,
+          url: `/lessons/${this.lesson._id}`,
           title: this.lesson.name
         }
       ];

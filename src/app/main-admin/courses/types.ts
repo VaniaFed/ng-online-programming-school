@@ -1,5 +1,5 @@
 export interface ICourse {
-  id: string;
+  _id: string;
   name: string;
   description: string;
   price: string;
@@ -7,7 +7,7 @@ export interface ICourse {
 }
 
 export interface IStudent {
-  id: string;
+  _id: string;
   fullName: string;
   course: string;
 }
