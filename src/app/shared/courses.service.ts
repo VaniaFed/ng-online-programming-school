@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ICourse} from '../main-admin/courses/types';
+import {formBodyAndHeaders} from '../../libs/formBodyAndHeaders';
 
 @Injectable()
 export class CoursesService {
@@ -13,22 +14,12 @@ export class CoursesService {
     return this.http.get<ICourse>(`api/courses/${id}`);
   }
   addCourse(course: ICourse) {
-    const courseString = JSON.stringify({course});
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-    };
-    return this.http.post<string>('api/add-course/', courseString, httpOptions);
+    const { body, httpOptions } = formBodyAndHeaders({course});
+    return this.http.post<string>('api/add-course/', body, httpOptions);
   }
 
   editCourse(course: ICourse) {
-    const courseString = JSON.stringify({course});
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.http.patch<string>('api/edit-course/', courseString, httpOptions);
+    const { body, httpOptions } = formBodyAndHeaders({course});
+    return this.http.patch<string>('api/edit-course/', body, httpOptions);
   }
 }

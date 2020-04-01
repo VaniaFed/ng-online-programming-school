@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ILesson} from '../course-admin/course-lessons/course-lessons.component';
 import {map} from 'rxjs/operators';
+import {formBodyAndHeaders} from '../../libs/formBodyAndHeaders';
 
 @Injectable()
 export class LessonsService {
@@ -14,18 +15,6 @@ export class LessonsService {
   * add login and registration logic
   * add user profile page
   */
-  private static getBodyAndOptions(lesson: ILesson) {
-    const lessonString = JSON.stringify( {lesson });
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return {
-      lessonString,
-      httpOptions
-    };
-  }
 
   getLessonsByCourseId(courseId: string) {
     return this.http.get<ILesson[]>(`api/courses/${courseId}/lessons/`);
@@ -46,13 +35,13 @@ export class LessonsService {
       ...lesson,
       courseId
     };
-    const { lessonString, httpOptions } = LessonsService.getBodyAndOptions(lessonWithCourseId);
-    return this.http.post<any>(`api/add-lesson`, lessonString, httpOptions);
+    const { body, httpOptions } = formBodyAndHeaders({lesson: lessonWithCourseId});
+    return this.http.post<any>(`api/add-lesson`, body, httpOptions);
   }
 
   editLesson(lesson: ILesson) {
-    const { lessonString, httpOptions } = LessonsService.getBodyAndOptions(lesson);
-    return this.http.patch<ILesson>(`api/edit-lesson`, lessonString, httpOptions);
+    const { body, httpOptions } = formBodyAndHeaders({lesson});
+    return this.http.patch<ILesson>(`api/edit-lesson`, body, httpOptions);
   }
 
   makeVideoUrlFull(video) {

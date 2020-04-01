@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {IStudent} from '../courses/types';
 import {Observable} from 'rxjs';
+import {formBodyAndHeaders} from '../../../libs/formBodyAndHeaders';
 
 @Injectable()
 export class StudentsService {
@@ -12,12 +13,7 @@ export class StudentsService {
   }
 
   addStudent(student: IStudent) {
-    const studentString = JSON.stringify(student);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-    };
-    return this.http.post<string>('api/add-student/', studentString, httpOptions);
+    const { body, httpOptions } = formBodyAndHeaders({student});
+    return this.http.post<string>('api/add-student/', body, httpOptions);
   }
 }
