@@ -5,6 +5,7 @@ import {CoursesService} from '../shared/courses.service';
 import {LessonsService} from '../shared/lessons.service';
 import {ILesson} from '../course-admin/course-lessons/course-lessons.component';
 import {BreadcrumbItem} from '../shared/breadcrumbs/breadcrumbs.component';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-course-papge',
@@ -36,9 +37,20 @@ export class CoursePageComponent implements OnInit {
         }
       ];
     });
-    lessonsService.getLessonsByCourseId(this.courseId).subscribe(lessons => {
-      this.lessons = lessons;
-    });
+    lessonsService.getLessonsByCourseId(this.courseId)
+      .pipe(
+        map(lessons => {
+          return lessons.map(lesson => {
+            return {
+              ...lesson,
+              href: ['/', 'lessons', lesson._id]
+            };
+          });
+        })
+      )
+      .subscribe(lessons => {
+        this.lessons = lessons;
+      });
   }
 
   ngOnInit() {

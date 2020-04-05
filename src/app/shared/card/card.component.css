@@ -1,0 +1,21 @@
+.card {
+  padding: 25px;
+  background: #37474F;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .1s;
+}
+
+.card:hover {
+  background: #455A64;
+}
+
+.card__link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.card__title {
+  margin-bottom: 6px;
+}

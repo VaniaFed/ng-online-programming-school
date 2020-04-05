@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DialogCreateLessonComponent} from './dialog-create-lesson/dialog-create-lesson.component';
 import {LessonsService} from '../../shared/lessons.service';
 import {MatTableDataSource} from '@angular/material';
+import {map} from 'rxjs/operators';
 
 export interface ILesson {
   _id: string;
@@ -38,6 +39,16 @@ export class CourseLessonsComponent implements OnInit {
   }
   ngOnInit(): void {
     this.lessonsService.getLessonsByCourseId(this.courseId)
+      .pipe(
+        map(lessons => {
+          return lessons.map(lesson => {
+            return {
+              ...lesson,
+              href: ['/', 'admin', 'lessons', lesson._id]
+            };
+          });
+        })
+      )
       .subscribe(lessons => {
         this.lessons = lessons;
         this.dataSource.data = lessons;

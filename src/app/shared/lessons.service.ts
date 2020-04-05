@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {ILesson} from '../course-admin/course-lessons/course-lessons.component';
 import {map} from 'rxjs/operators';
 import {formBodyAndHeaders} from '../../libs/formBodyAndHeaders';
@@ -8,8 +8,7 @@ import {formBodyAndHeaders} from '../../libs/formBodyAndHeaders';
 export class LessonsService {
   constructor(private http: HttpClient) {}
   /*
-  * TODO: make function getBodyAndOptions more abstract and use in other requests (services)
-  * replace table of lessons at admin/courses with rows of lessons like at /courses/1
+  * TODO:
   * add user
   * add angular guard and make authentication
   * add login and registration logic

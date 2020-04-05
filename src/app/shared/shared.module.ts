@@ -19,8 +19,10 @@ import {CoursesToTilePipe} from './courses-to-tile.pipe';
 import {OverlayComponent} from './overlay/overlay.component';
 import {LessonsService} from './lessons.service';
 import {SafePipe} from './safe.pipe';
-import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
-import { SectionComponent } from './section/section.component';
+import {BreadcrumbsComponent} from './breadcrumbs/breadcrumbs.component';
+import {SectionComponent} from './section/section.component';
+import {CardComponent} from './card/card.component';
+import {LessonsListComponent} from './lessons-list/lessons-list.component';
 
 const components = [
   TileGalleryComponent,
@@ -28,6 +30,8 @@ const components = [
   OverlayComponent,
   BreadcrumbsComponent,
   SectionComponent,
+  CardComponent,
+  LessonsListComponent,
 ];
 
 const modules = [

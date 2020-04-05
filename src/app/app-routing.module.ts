@@ -34,6 +34,10 @@ const routingSchematics: Routes = [
   {
     path: 'admin/courses/:id',
     loadChildren: () => import('./course-admin/course-admin.module').then(m => m.CourseAdminModule)
+  },
+  {
+    path: 'admin/lessons/:id',
+    loadChildren: () => import('./admin-lesson/admin-lesson.module').then(m => m.AdminLessonModule)
   }
 ];
 

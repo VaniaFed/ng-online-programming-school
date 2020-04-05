@@ -1,0 +1,8 @@
+<div class="lessons-list">
+  <app-card
+    *ngFor="let lesson of lessons, index as index"
+    [title]="index+1 + '. ' + lesson.name"
+    [content]="lesson.description"
+    [linkHref]="lesson.href"
+  ></app-card>
+</div>
