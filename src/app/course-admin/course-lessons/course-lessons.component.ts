@@ -13,6 +13,7 @@ export interface ILesson {
   videoUrl?: string;
   textContent: string;
   courseId: string;
+  linkHref?: string[];
 }
 
 @Component({
@@ -38,17 +39,7 @@ export class CourseLessonsComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.lessonsService.getLessonsByCourseId(this.courseId)
-      .pipe(
-        map(lessons => {
-          return lessons.map(lesson => {
-            return {
-              ...lesson,
-              href: ['/', 'admin', 'lessons', lesson._id]
-            };
-          });
-        })
-      )
+    this.lessonsService.getLessonsByCourseId(this.courseId, true)
       .subscribe(lessons => {
         this.lessons = lessons;
         this.dataSource.data = lessons;

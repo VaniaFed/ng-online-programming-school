@@ -15,8 +15,18 @@ export class LessonsService {
   * add user profile page
   */
 
-  getLessonsByCourseId(courseId: string) {
-    return this.http.get<ILesson[]>(`api/courses/${courseId}/lessons/`);
+  getLessonsByCourseId(courseId: string, isAdmin = false) {
+    return this.http.get<ILesson[]>(`api/courses/${courseId}/lessons/`)
+      .pipe(
+        map(lessons => {
+          return lessons.map((lesson): ILesson => ({
+              ...lesson,
+              linkHref: (isAdmin)
+                ? ['/', 'admin', 'lessons', lesson._id]
+                : ['/', 'lessons', lesson._id]
+          }));
+        })
+      );
   }
 
   getLessonById(lessonId) {
