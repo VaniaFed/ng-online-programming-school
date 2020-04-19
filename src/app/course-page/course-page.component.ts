@@ -19,12 +19,14 @@ export class CoursePageComponent implements OnInit {
   breadcrumbsData: BreadcrumbItem[];
   constructor(private activatedRoute: ActivatedRoute,
               private coursesService: CoursesService,
-              private lessonsService: LessonsService) {
-    activatedRoute.params.subscribe(params => {
+              private lessonsService: LessonsService) {}
+
+  ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
       const {courseId} = params;
       this.courseId = courseId;
     });
-    coursesService.getCourse(this.courseId).subscribe(course => {
+    this.coursesService.getCourse(this.courseId).subscribe(course => {
       this.course = course;
       this.breadcrumbsData = [
         {
@@ -37,7 +39,7 @@ export class CoursePageComponent implements OnInit {
         }
       ];
     });
-    lessonsService.getLessonsByCourseId(this.courseId)
+    this.lessonsService.getLessonsByCourseId(this.courseId)
       .pipe(
         map(lessons => {
           return lessons.map(lesson => {
@@ -51,9 +53,6 @@ export class CoursePageComponent implements OnInit {
       .subscribe(lessons => {
         this.lessons = lessons;
       });
-  }
-
-  ngOnInit() {
   }
 
 }

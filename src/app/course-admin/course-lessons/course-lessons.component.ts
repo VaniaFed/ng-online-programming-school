@@ -30,15 +30,14 @@ export class CourseLessonsComponent implements OnInit {
   @Output() lessonAdded: EventEmitter<ILesson> = new EventEmitter<ILesson>();
   constructor(private dialog: MatDialog,
               private formBuilder: FormBuilder,
-              private lessonsService: LessonsService) {
-    this.lessonsForm = formBuilder.group({
+              private lessonsService: LessonsService) {}
+  ngOnInit(): void {
+    this.lessonsForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
       description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
       textContent: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(299)]],
-      videoUrl: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]]
+      videoUrl: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]]
     });
-  }
-  ngOnInit(): void {
     this.lessonsService.getLessonsByCourseId(this.courseId, true)
       .subscribe(lessons => {
         this.lessons = lessons;

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material';
 
@@ -16,7 +16,7 @@ export interface TableRow {
   templateUrl: './students-table.component.html',
   styleUrls: []
 })
-export class StudentsTableComponent {
+export class StudentsTableComponent implements OnInit {
   tableColumns: string[] = ['fullName', 'course'];
   tableRow: TableRow[] = [];
   studentsForm: FormGroup;
@@ -25,17 +25,7 @@ export class StudentsTableComponent {
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
     private studentsService: StudentsService
-  ) {
-    this.studentsForm = formBuilder.group({
-      fullName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
-      course: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
-    });
-
-    const students$ = studentsService.getStudents();
-    students$.subscribe(students => {
-      this.tableRow = students;
-    });
-  }
+  ) {}
 
   addStudent(student: IStudent) {
     this.studentsService.addStudent(student)
@@ -54,6 +44,17 @@ export class StudentsTableComponent {
         this.addStudent(student);
       }
       this.studentsForm.reset();
+    });
+  }
+  ngOnInit(): void {
+    this.studentsForm = this.formBuilder.group({
+      fullName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
+      course: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
+    });
+
+    const students$ = this.studentsService.getStudents();
+    students$.subscribe(students => {
+      this.tableRow = students;
     });
   }
 }

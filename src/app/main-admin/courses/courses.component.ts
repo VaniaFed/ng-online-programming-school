@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material';
 import {ICourse} from './types';
@@ -9,22 +9,13 @@ import {CoursesService} from '../../shared/courses.service';
   selector: 'courses',
   templateUrl: './courses.component.html'
 })
-export class CoursesComponent {
+export class CoursesComponent implements OnInit {
   coursesForm: FormGroup;
   public courses: ICourse[] = [];
 
-  constructor(private dialog: MatDialog, formBuilder: FormBuilder, private coursesService: CoursesService) {
-    this.coursesForm = formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
-      description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(300)]],
-      price: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
-      imgSrc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
-    });
-    const courses$ = coursesService.getCourses();
-    courses$.subscribe(
-      courses => this.courses = courses
-    );
-  }
+  constructor(private dialog: MatDialog,
+              private formBuilder: FormBuilder,
+              private coursesService: CoursesService) {}
 
   addCourse(course: ICourse) {
     this.coursesService.addCourse(course)
@@ -45,5 +36,17 @@ export class CoursesComponent {
         }
         this.coursesForm.reset();
       });
+  }
+  ngOnInit(): void {
+    this.coursesForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
+      description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(300)]],
+      price: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
+      imgSrc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
+    });
+    const courses$ = this.coursesService.getCourses();
+    courses$.subscribe(
+      courses => this.courses = courses
+    );
   }
 }

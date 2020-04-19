@@ -8,13 +8,11 @@ import {ICourse} from '../main-admin/courses/types';
 })
 export class CoursesPageComponent implements OnInit {
   courses: ICourse[];
-  constructor(private coursesService: CoursesService) {
-    coursesService.getCourses().subscribe(courses => {
+  constructor(private coursesService: CoursesService) {}
+
+  ngOnInit() {
+    this.coursesService.getCourses().subscribe(courses => {
       this.courses = courses;
     });
   }
-
-  ngOnInit() {
-  }
-
 }

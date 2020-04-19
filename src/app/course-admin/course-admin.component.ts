@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CoursesService} from '../shared/courses.service';
 import {ICourse} from '../main-admin/courses/types';
@@ -11,7 +11,7 @@ import {Course} from '../main-admin/courses/course.model';
   selector: 'app-course-admin',
   templateUrl: './course-admin.component.html'
 })
-export class CourseAdminComponent {
+export class CourseAdminComponent implements OnInit {
   course = new Course();
   courseAsTile = new Tile();
   form: FormGroup;
@@ -21,17 +21,7 @@ export class CourseAdminComponent {
     private activatedRoute: ActivatedRoute,
     private coursesService: CoursesService,
     private formBuilder: FormBuilder
-  ) {
-    activatedRoute.params
-      .subscribe(
-        ({ id: courseId }) => this.init(courseId)
-      );
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
-      price: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]],
-      imgSrc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
-    });
-  }
+  ) {}
 
   init(courseId) {
     this.shouldShowSpinner = true;
@@ -57,6 +47,17 @@ export class CourseAdminComponent {
     };
     this.coursesService.editCourse(course).subscribe(() => {
       this.shouldShowSpinner = false;
+    });
+  }
+  ngOnInit(): void {
+    this.activatedRoute.params
+      .subscribe(
+        ({ id: courseId }) => this.init(courseId)
+      );
+    this.form = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
+      price: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]],
+      imgSrc: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
     });
   }
 }

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
 export interface Tile {
   text: string;
@@ -9,7 +9,8 @@ export interface Tile {
 @Component({
   selector: 'app-tile',
   templateUrl: './tile.component.html',
-  styleUrls: ['./tile.component.css']
+  styleUrls: ['./tile.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TileComponent {
   @Input() text: string;

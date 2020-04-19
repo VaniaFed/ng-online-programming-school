@@ -9,6 +9,7 @@ export class LessonsService {
   constructor(private http: HttpClient) {}
   /*
   * TODO:
+  * add more complex validators to login and registration
   * add user
   * add angular guard and make authentication
   * add login and registration logic

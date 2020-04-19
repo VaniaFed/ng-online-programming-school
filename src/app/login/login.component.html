@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Add a lesson</h1>
+  <form [formGroup]="formLogin" (ngSubmit)="logIn(formLogin.value)">
+    <mat-form-field class="full-width">
+      <input matInput formControlName="fullName" type="text" placeholder="Full name">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput formControlName="login" type="text" placeholder="Login">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput formControlName="password" type="text" placeholder="Password">
+    </mat-form-field>
+  </form>
+  <div>
+    <button mat-button color="accent" mat-raised-button>Log in</button>
+  </div>
+</div>
