@@ -1,18 +1,23 @@
 .card {
   padding: 25px;
-  background: #37474F;
-  color: #fff;
+  background: #fff;
+  border: 1px solid #aaa;
   border-radius: 4px;
   cursor: pointer;
-  transition: background .1s;
+  transition: all .3s;
 }
 
 .card:hover {
-  background: #455A64;
+  background: #ff4081;
+  border-color: #ff4081;
 }
 
 .card__link {
   text-decoration: none;
+  color: #000;
+}
+
+.card:hover .card__link {
   color: #fff;
 }
 
