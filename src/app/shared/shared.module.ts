@@ -23,8 +23,8 @@ import {
   HeaderComponent
 } from './components';
 import {CoursesToTilePipe, SafePipe} from './pipes';
-import {httpInterceptorProviders} from '../security/interceptors';
-import {UserGuard, AdminGuard} from '../security/guards';
+import {httpInterceptorProviders} from '@security/interceptors';
+import {UserGuard, AdminGuard} from '@security/guards';
 
 const components = [
   TileGalleryComponent,

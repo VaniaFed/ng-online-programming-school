@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ILesson} from '../../course-admin/course-lessons/course-lessons.component';
+import {ILesson} from '@myTypes/index';
 import {map} from 'rxjs/operators';
-import {formBodyAndHeaders} from '../../../libs/formBodyAndHeaders';
 import {SharedModule} from '../shared.module';
 
 @Injectable({
@@ -48,13 +47,11 @@ export class LessonsService {
       ...lesson,
       courseId
     };
-    const { body, httpOptions } = formBodyAndHeaders({lesson: lessonWithCourseId});
-    return this.http.post<any>(`api/add-lesson`, body, httpOptions);
+    return this.http.post<any>(`api/add-lesson`, {lesson: lessonWithCourseId});
   }
 
   editLesson(lesson: ILesson) {
-    const { body, httpOptions } = formBodyAndHeaders({lesson});
-    return this.http.patch<ILesson>(`api/edit-lesson`, body, httpOptions);
+    return this.http.patch<ILesson>(`api/edit-lesson`, {lesson});
   }
 
   makeVideoUrlFull(video) {

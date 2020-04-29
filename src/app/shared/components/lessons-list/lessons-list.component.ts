@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {ILesson} from '../../../course-admin/course-lessons/course-lessons.component';
+import {ILesson} from '@myTypes/index';
 
 @Component({
   selector: 'lessons-list',

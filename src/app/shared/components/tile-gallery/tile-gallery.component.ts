@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {Tile} from '../tile/tile.component';
+import {ITile} from '@myTypes/index';
 
 @Component({
   selector: 'tile-gallery',
@@ -8,7 +8,7 @@ import {Tile} from '../tile/tile.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TileGalleryComponent {
-  @Input() tiles: Tile[];
+  @Input() tiles: ITile[];
   track(_, item) {
     if (!item) {
       return null;

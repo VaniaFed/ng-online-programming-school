@@ -1,9 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-
-export interface BreadcrumbItem {
-  url: string;
-  title: string;
-}
+import {IBreadcrumb} from '@myTypes/breadcrumb';
 
 @Component({
   selector: 'breadcrumbs',
@@ -12,7 +8,7 @@ export interface BreadcrumbItem {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BreadcrumbsComponent {
-  @Input() breadcrumbs: BreadcrumbItem[];
+  @Input() breadcrumbs: IBreadcrumb[];
   @Input() separator: string;
   constructor() {}
 }

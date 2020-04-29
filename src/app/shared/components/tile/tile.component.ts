@@ -1,11 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
-export interface Tile {
-  text: string;
-  imgSrc: string;
-  linkHref?: string;
-}
-
 @Component({
   selector: 'app-tile',
   templateUrl: './tile.component.html',

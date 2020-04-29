@@ -1,8 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {UserGuard} from './security/guards';
-import {AdminGuard} from './security/guards';
+import {UserGuard, AdminGuard} from '@security/guards';
 
 const routingSchematics: Routes = [
   {
@@ -13,23 +12,23 @@ const routingSchematics: Routes = [
   {
     path: 'courses',
     pathMatch: 'full',
-    loadChildren: () => import('./courses-page/courses-page.module').then(m => m.CoursesPageModule)
+    loadChildren: () => import('./user/courses-page/courses-page.module').then(m => m.CoursesPageModule)
   },
   {
     path: 'courses/:courseId',
     canActivate: [UserGuard],
-    loadChildren: () => import('./course-page/course-page.module').then(m => m.CoursePageModule)
+    loadChildren: () => import('./user/course-page/course-page.module').then(m => m.CoursePageModule)
   },
   {
     path: 'lessons/:lessonId',
     canActivate: [UserGuard],
-    loadChildren: () => import('./lesson-page/lesson-page.module').then(m => m.LessonPageModule)
+    loadChildren: () => import('./user/lesson-page/lesson-page.module').then(m => m.LessonPageModule)
   },
   {
     path: 'admin',
     pathMatch: 'full',
     canActivate: [AdminGuard, UserGuard],
-    loadChildren: () => import('./main-admin/main-admin.module').then(m => m.MainAdminModule)
+    loadChildren: () => import('./admin/main-admin/main-admin.module').then(m => m.MainAdminModule)
   },
   {
     path: 'admin/course/:id',
@@ -38,20 +37,20 @@ const routingSchematics: Routes = [
   {
     path: 'admin/courses/:id',
     canActivate: [AdminGuard, UserGuard],
-    loadChildren: () => import('./course-admin/course-admin.module').then(m => m.CourseAdminModule)
+    loadChildren: () => import('./admin/course-admin/course-admin.module').then(m => m.CourseAdminModule)
   },
   {
     path: 'admin/lessons/:id',
     canActivate: [AdminGuard, UserGuard],
-    loadChildren: () => import('./admin-lesson/admin-lesson.module').then(m => m.AdminLessonModule)
+    loadChildren: () => import('./admin/admin-lesson/admin-lesson.module').then(m => m.AdminLessonModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+    loadChildren: () => import('./user/login/login.module').then(m => m.LoginModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
+    loadChildren: () => import('./user/register/register.module').then(m => m.RegisterModule)
   },
 ];
 
