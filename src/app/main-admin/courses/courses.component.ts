@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material';
 import {ICourse} from './types';
 import { DialogCreateCourseComponent } from './dialog-create-course/dialog-create-course.component';
-import {CoursesService} from '../../shared/courses.service';
+import {CoursesService} from '../../shared/services';
 
 @Component({
   selector: 'courses',

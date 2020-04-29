@@ -12,18 +12,19 @@ import {
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 
-import {TileGalleryComponent} from './tile-gallery/tile-gallery.component';
-import {TileComponent} from './tile/tile.component';
-import {CoursesToTilePipe} from './courses-to-tile.pipe';
-import {OverlayComponent} from './overlay/overlay.component';
-import {SafePipe} from './safe.pipe';
-import {BreadcrumbsComponent} from './breadcrumbs/breadcrumbs.component';
-import {SectionComponent} from './section/section.component';
-import {CardComponent} from './card/card.component';
-import {LessonsListComponent} from './lessons-list/lessons-list.component';
+import {
+  BreadcrumbsComponent,
+  CardComponent,
+  LessonsListComponent,
+  OverlayComponent,
+  SectionComponent,
+  TileComponent,
+  TileGalleryComponent,
+  HeaderComponent
+} from './components';
+import {CoursesToTilePipe, SafePipe} from './pipes';
 import {httpInterceptorProviders} from '../security/interceptors';
-import {UserGuard} from '../security/guards';
-import {AdminGuard} from '../security/guards';
+import {UserGuard, AdminGuard} from '../security/guards';
 
 const components = [
   TileGalleryComponent,
@@ -33,6 +34,7 @@ const components = [
   SectionComponent,
   CardComponent,
   LessonsListComponent,
+  HeaderComponent
 ];
 
 const modules = [

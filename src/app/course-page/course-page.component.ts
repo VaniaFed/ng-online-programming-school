@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ICourse} from '../main-admin/courses/types';
 import {ActivatedRoute} from '@angular/router';
-import {CoursesService} from '../shared/courses.service';
-import {LessonsService} from '../shared/lessons.service';
+import {CoursesService} from '../shared/services';
+import {LessonsService} from '../shared/services';
 import {ILesson} from '../course-admin/course-lessons/course-lessons.component';
-import {BreadcrumbItem} from '../shared/breadcrumbs/breadcrumbs.component';
+import {BreadcrumbItem} from '../shared/components/breadcrumbs/breadcrumbs.component';
 import {map} from 'rxjs/operators';
 
 @Component({

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ILesson} from '../course-admin/course-lessons/course-lessons.component';
+import {ILesson} from '../../course-admin/course-lessons/course-lessons.component';
 import {map} from 'rxjs/operators';
-import {formBodyAndHeaders} from '../../libs/formBodyAndHeaders';
-import {SharedModule} from './shared.module';
+import {formBodyAndHeaders} from '../../../libs/formBodyAndHeaders';
+import {SharedModule} from '../shared.module';
 
 @Injectable({
   providedIn: SharedModule

@@ -2,9 +2,8 @@ import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DialogCreateLessonComponent} from './dialog-create-lesson/dialog-create-lesson.component';
-import {LessonsService} from '../../shared/lessons.service';
+import {LessonsService} from '../../shared/services';
 import {MatTableDataSource} from '@angular/material';
-import {map} from 'rxjs/operators';
 
 export interface ILesson {
   _id: string;

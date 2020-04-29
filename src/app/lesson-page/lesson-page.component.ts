@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {LessonsService} from '../shared/lessons.service';
+import {LessonsService, CoursesService} from '../shared/services';
 import {ILesson} from '../course-admin/course-lessons/course-lessons.component';
 import {ActivatedRoute} from '@angular/router';
 import {ICourse} from '../main-admin/courses/types';
-import {CoursesService} from '../shared/courses.service';
-import {BreadcrumbItem} from '../shared/breadcrumbs/breadcrumbs.component';
+import {BreadcrumbItem} from '../shared/components/breadcrumbs/breadcrumbs.component';
 import {concatMap} from 'rxjs/operators';
 
 @Component({

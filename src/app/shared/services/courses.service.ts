@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ICourse} from '../main-admin/courses/types';
-import {formBodyAndHeaders} from '../../libs/formBodyAndHeaders';
-import {SharedModule} from './shared.module';
+import {ICourse} from '../../main-admin/courses/types';
+import {formBodyAndHeaders} from '../../../libs/formBodyAndHeaders';
+import {SharedModule} from '../shared.module';
 
 @Injectable({
   providedIn: SharedModule

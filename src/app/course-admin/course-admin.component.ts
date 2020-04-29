@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {CoursesService} from '../shared/courses.service';
+import {CoursesService} from '../shared/services';
 import {ICourse} from '../main-admin/courses/types';
 import {courseToTile} from '../../libs/courseToTile';
-import {Tile} from '../shared/tile/tile.model';
+import {Tile} from '../shared/components/tile/tile.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Course} from '../main-admin/courses/course.model';
 
