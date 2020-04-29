@@ -10,19 +10,20 @@ import {
   MatProgressSpinnerModule
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 import {TileGalleryComponent} from './tile-gallery/tile-gallery.component';
 import {TileComponent} from './tile/tile.component';
-import {HttpClientModule} from '@angular/common/http';
-import {CoursesService} from './courses.service';
 import {CoursesToTilePipe} from './courses-to-tile.pipe';
 import {OverlayComponent} from './overlay/overlay.component';
-import {LessonsService} from './lessons.service';
 import {SafePipe} from './safe.pipe';
 import {BreadcrumbsComponent} from './breadcrumbs/breadcrumbs.component';
 import {SectionComponent} from './section/section.component';
 import {CardComponent} from './card/card.component';
 import {LessonsListComponent} from './lessons-list/lessons-list.component';
+import {httpInterceptorProviders} from '../security/interceptors';
+import {UserGuard} from '../security/guards';
+import {AdminGuard} from '../security/guards';
 
 const components = [
   TileGalleryComponent,
@@ -66,6 +67,10 @@ const pipes = [
     ...modules,
     ...pipes
   ],
-  providers: [CoursesService, LessonsService]
+  providers: [
+    httpInterceptorProviders,
+    UserGuard,
+    AdminGuard
+  ]
 })
 export class SharedModule { }

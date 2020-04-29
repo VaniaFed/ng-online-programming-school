@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {ICourse} from '../main-admin/courses/types';
 import {formBodyAndHeaders} from '../../libs/formBodyAndHeaders';
+import {SharedModule} from './shared.module';
 
-@Injectable()
+@Injectable({
+  providedIn: SharedModule
+})
 export class CoursesService {
   constructor(private http: HttpClient) {}
 

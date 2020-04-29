@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {CoursesComponent} from './courses/courses.component';
 import {MainAdminRoutingModule} from './main-admin-routing.module';
@@ -9,7 +7,6 @@ import {StudentsTableComponent} from './students-table/students-table.component'
 import {SharedModule} from '../shared/shared.module';
 import { DialogCreateCourseComponent } from './courses/dialog-create-course/dialog-create-course.component';
 import { DialogCreateStudentComponent } from './students-table/dialog-create-student/dialog-create-student.component';
-import {HttpClientModule} from '@angular/common/http';
 import {StudentsService} from './students-table/students.service';
 
 @NgModule({
@@ -21,11 +18,7 @@ import {StudentsService} from './students-table/students.service';
     DialogCreateStudentComponent
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     SharedModule,
-    HttpClientModule,
     MainAdminRoutingModule
   ],
   entryComponents: [

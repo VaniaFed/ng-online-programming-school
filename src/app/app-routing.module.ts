@@ -1,9 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {CourseAdminComponent} from './course-admin/course-admin.component';
-import {UserGuard} from './auth/user.guard';
-import {AdminGuard} from './auth/admin.guard';
+import {UserGuard} from './security/guards';
+import {AdminGuard} from './security/guards';
 
 const routingSchematics: Routes = [
   {
@@ -29,7 +28,7 @@ const routingSchematics: Routes = [
   {
     path: 'admin',
     pathMatch: 'full',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, UserGuard],
     loadChildren: () => import('./main-admin/main-admin.module').then(m => m.MainAdminModule)
   },
   {
@@ -38,12 +37,12 @@ const routingSchematics: Routes = [
   },
   {
     path: 'admin/courses/:id',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, UserGuard],
     loadChildren: () => import('./course-admin/course-admin.module').then(m => m.CourseAdminModule)
   },
   {
     path: 'admin/lessons/:id',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, UserGuard],
     loadChildren: () => import('./admin-lesson/admin-lesson.module').then(m => m.AdminLessonModule)
   },
   {

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const lessonsService = require('../services').lessonsService;
-const coursesService = require('../services').coursesService
+const coursesService = require('../services').coursesService;
 
 router.get('/courses/', async (req, res) => {
   await coursesService.getCourses(req, res);

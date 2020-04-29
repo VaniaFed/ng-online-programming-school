@@ -3,8 +3,11 @@ import {HttpClient} from '@angular/common/http';
 import {ILesson} from '../course-admin/course-lessons/course-lessons.component';
 import {map} from 'rxjs/operators';
 import {formBodyAndHeaders} from '../../libs/formBodyAndHeaders';
+import {SharedModule} from './shared.module';
 
-@Injectable()
+@Injectable({
+  providedIn: SharedModule
+})
 export class LessonsService {
   constructor(private http: HttpClient) {}
   /*
